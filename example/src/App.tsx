@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
-import { Button, Box } from 'logikey-ui'
+import { Button, Box, Flag } from 'logikey-ui'
 
 const App = () => {
   const [isLoadingMain, setLoadingMain] = useState(false);
@@ -28,7 +28,46 @@ const App = () => {
         marginBottom: 20
       }}
     >
-      <Text>This is how our box looks like 🥳</Text>
+      <Text style={{ marginBottom: 20 }}>This is how our box looks like 🥳</Text>
+
+      <View style={{ flexDirection: 'row' }}>
+        <Flag
+          text='done'
+      
+        />
+        <Flag
+          type='waiting'
+          text='in progress'
+          style={{
+            marginHorizontal: 10,
+          }}
+        />
+        <Flag
+          text='canceled'
+          type='canceled'
+        />
+      </View>
+
+      <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <Flag
+          text='done'
+          hasBackground
+        />
+        <Flag
+          type='waiting'
+          hasBackground
+          text='in progress'
+          style={{
+            marginHorizontal: 10,
+          }}
+        />
+        <Flag
+          text='canceled'
+          hasBackground
+          type='canceled'
+        />
+      </View>
+
     </Box>
 
     <Button
