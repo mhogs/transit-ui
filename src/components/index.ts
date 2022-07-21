@@ -1,7 +1,7 @@
 import Button from "./Button";
-import Card from "./Card";
+import Box from "./Box";
 
 export {
     Button,
-    Card
+    Box
 }

@@ -5,7 +5,7 @@ type Props = {
     children?: ReactNode
     style?: any
 }
-const Card = ({ children, style }: Props) => {
+const Box = ({ children, style }: Props) => {
 
     return <View
         style={{
@@ -29,4 +29,4 @@ const Card = ({ children, style }: Props) => {
     </View>
 }
 
-export default memo(Card)
+export default memo(Box)
