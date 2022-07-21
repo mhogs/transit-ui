@@ -1,10 +1,10 @@
 import { NativeModules } from 'react-native'
-import { Button, Card } from './components'
+import { Button, Box } from './components'
 
 
 export {
   Button,
-  Card
+  Box
 }
 
 export default NativeModules.RNLogikeyModule
