@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
-import { Button } from 'logikey-ui'
+import { View, Text } from 'react-native'
+import { Button, Card } from 'logikey-ui'
 
 const App = () => {
   const [isLoadingMain, setLoadingMain] = useState(false);
@@ -22,6 +22,15 @@ const App = () => {
       paddingHorizontal: 16
     }}
   >
+
+    <Card
+      style={{
+        marginBottom: 20
+      }}
+    >
+      <Text>This is how our card looks like 🥳</Text>
+    </Card>
+
     <Button
       text='main btn'
       onPress={() => console.log('Main')}
