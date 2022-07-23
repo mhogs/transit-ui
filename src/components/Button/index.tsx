@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 
