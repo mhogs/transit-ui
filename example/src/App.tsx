@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { Button, Box, Flag, CheckBox } from 'logikey-ui'
+import Option from './Option';
 
 const App = () => {
   const [isLoadingMain, setLoadingMain] = useState(false);
@@ -34,6 +35,33 @@ const App = () => {
       }}
     >
       <Text>This is how our box looks like 🥳</Text>
+    </Box>
+    <Box
+      style={{
+        marginBottom: 20
+      }}
+    >
+      <Text style={{ marginBottom: 20 }}>This is how our Options looks like 🥳</Text>
+      <Option
+        text='This the option'
+        style={{
+          marginBottom: 10
+        }}
+        value={isChecked}
+        onChange={setChecked}
+      />
+      <Option
+        text='This the option'
+        extraText='120$'
+        style={{
+          marginBottom: 10
+        }}
+      />
+      <Option
+        text='This the disabled option'
+        extraText='120$'
+        disabled
+      />
     </Box>
     <Box
       style={{
