@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ScrollView } from 'react-native'
-import { Button, Box, Flag, CheckBox, Option } from 'logikey-ui'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
+import { Button, Box, Flag, CheckBox, Option, Link } from 'logikey-ui'
 
 const App = () => {
   const [isLoadingMain, setLoadingMain] = useState(false);
@@ -28,12 +28,27 @@ const App = () => {
     }}
     showsVerticalScrollIndicator={false}
   >
+    <Link
+      text='Test link'
+      onPress={() => Alert.alert("Hi! I'm a Link")}
+      style={{
+        marginBottom:10
+      }}
+    />
     <Box
       style={{
         marginBottom: 20
       }}
     >
       <Text>This is how our box looks like 🥳</Text>
+      <Image
+        source={require('./images/calendar.png')}
+        style={{
+          width: 60,
+          height: 60,
+          marginTop: 20
+        }}
+      />
     </Box>
     <Box
       style={{
