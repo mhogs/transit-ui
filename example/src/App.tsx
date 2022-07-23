@@ -42,7 +42,7 @@ const App = () => {
     >
       <Text style={{ marginBottom: 20 }}>This is how our Options looks like 🥳</Text>
       <Option
-        text='This the option'
+        text='This is the option'
         style={{
           marginBottom: 10
         }}
@@ -50,14 +50,14 @@ const App = () => {
         onChange={setChecked}
       />
       <Option
-        text='This the option'
+        text='This is the option'
         extraText='120$'
         style={{
           marginBottom: 10
         }}
       />
       <Option
-        text='This the disabled option'
+        text='This is the disabled option'
         extraText='120$'
         disabled
       />

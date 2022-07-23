@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
+import colors from '../../themes/colors';
 
 type Props = {
     text?: string,
@@ -42,9 +43,9 @@ const CheckBox = ({ style, text, value, onChange, disabled }: Props) => {
                     width: 20,
                     height: 20,
                     borderWidth: .5,
-                    borderColor: isChecked ? '#2E9D8D' : '#95a5a6',
+                    borderColor: isChecked ? colors.main : colors.gray,
                     borderRadius: 3,
-                    backgroundColor: isDisabled ? '#95a5a630' : (isChecked ? '#2E9D8D' : '#00000000'),
+                    backgroundColor: isDisabled ? colors.gray + 30 : (isChecked ? colors.main : colors.transparent),
                 }}
                 onPress={onPress}
                 disabled={isDisabled}
@@ -54,7 +55,7 @@ const CheckBox = ({ style, text, value, onChange, disabled }: Props) => {
                 <Text
                     style={{
                         fontSize: 16,
-                        color: isDisabled ? '#95a5a6' : '#171717'
+                        color: isDisabled ? colors.gray : colors.black_text
                     }}
                     onPress={onPress}
                 >

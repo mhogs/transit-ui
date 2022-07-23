@@ -1,84 +1,85 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
+import colors from '../../themes/colors'
 
 type Props = {
-  text: string
-  onPress?: CallableFunction
-  loading?: boolean
-  style?: any
-  bordered?: boolean
-  disabled?: boolean
+    text: string
+    onPress?: CallableFunction
+    loading?: boolean
+    style?: any
+    bordered?: boolean
+    disabled?: boolean
 }
 
 const Button = ({
-  text,
-  onPress,
-  loading,
-  style,
-  bordered,
-  disabled,
+    text,
+    onPress,
+    loading,
+    style,
+    bordered,
+    disabled,
 }: Props) => {
-  const [isLoading, setLoading] = useState(false)
-  const [isBordered, setIsBordered] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
+    const [isLoading, setLoading] = useState(false)
+    const [isBordered, setIsBordered] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false)
 
-  useEffect(() => {
-    setIsDisabled(!!disabled)
-  }, [disabled])
+    useEffect(() => {
+        setIsDisabled(!!disabled)
+    }, [disabled])
 
-  useEffect(() => {
-    setIsBordered(!!bordered)
-  }, [bordered])
+    useEffect(() => {
+        setIsBordered(!!bordered)
+    }, [bordered])
 
-  useEffect(() => {
-    setLoading(!!loading)
-  }, [loading])
+    useEffect(() => {
+        setLoading(!!loading)
+    }, [loading])
 
-  return (
-    <TouchableOpacity
-      style={{
-        backgroundColor: isBordered
-          ? 'transparent'
-          : isLoading || isDisabled
-          ? '#95a5a620'
-          : '#2E9D8D',
-        height: 55,
-        borderRadius: 8,
-        borderWidth: isBordered ? 1 : 0,
-        borderColor: isLoading || isDisabled ? '#95a5a6' : '#2E9D8D',
-        ...style,
-      }}
-      onPress={() => {
-        if (onPress) onPress()
-      }}
-      disabled={isDisabled || isLoading}
-    >
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        {isLoading ? (
-          <ActivityIndicator color={'#95a5a6'} />
-        ) : (
-          <Text
+    return (
+        <TouchableOpacity
             style={{
-              fontSize: 17,
-              fontWeight: 'bold',
-              color: isDisabled ? '#95a5a6' : isBordered ? '#2E9D8D' : '#fff',
-              textTransform: 'capitalize',
+                backgroundColor: isBordered
+                    ? colors.transparent
+                    : isLoading || isDisabled
+                        ? colors.gray + 20
+                        : colors.main,
+                height: 55,
+                borderRadius: 8,
+                borderWidth: isBordered ? 1 : 0,
+                borderColor: isLoading || isDisabled ? colors.gray : colors.main,
+                ...style,
             }}
-            numberOfLines={1}
-          >
-            {text}
-          </Text>
-        )}
-      </View>
-    </TouchableOpacity>
-  )
+            onPress={() => {
+                if (onPress) onPress()
+            }}
+            disabled={isDisabled || isLoading}
+        >
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                {isLoading ? (
+                    <ActivityIndicator color={colors.gray} />
+                ) : (
+                    <Text
+                        style={{
+                            fontSize: 17,
+                            fontWeight: 'bold',
+                            color: isDisabled ? colors.gray : isBordered ? colors.main : '#fff',
+                            textTransform: 'capitalize',
+                        }}
+                        numberOfLines={1}
+                    >
+                        {text}
+                    </Text>
+                )}
+            </View>
+        </TouchableOpacity>
+    )
 }
 
 /**
