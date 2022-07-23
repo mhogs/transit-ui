@@ -2,6 +2,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../../themes/colors'
+import { common_styles } from '../../themes/styles'
 
 type Props = {
     text: string
@@ -10,6 +11,7 @@ type Props = {
     style?: any
     bordered?: boolean
     disabled?: boolean
+    hasShadow?: boolean
 }
 
 const Button = ({
@@ -19,10 +21,16 @@ const Button = ({
     style,
     bordered,
     disabled,
+    hasShadow
 }: Props) => {
     const [isLoading, setLoading] = useState(false)
     const [isBordered, setIsBordered] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
+    const [isHasShadow, setHasShadow] = useState(false)
+
+    useEffect(() => {
+        setHasShadow(!!hasShadow)
+    }, [hasShadow])
 
     useEffect(() => {
         setIsDisabled(!!disabled)
@@ -44,10 +52,11 @@ const Button = ({
                     : isLoading || isDisabled
                         ? colors.gray + 20
                         : colors.main,
-                height: 55,
+                height: 45,
                 borderRadius: 8,
                 borderWidth: isBordered ? 1 : 0,
                 borderColor: isLoading || isDisabled ? colors.gray : colors.main,
+                ...((isHasShadow && !isBordered && !isDisabled) ? common_styles.shadow : {}),
                 ...style,
             }}
             onPress={() => {
@@ -67,7 +76,7 @@ const Button = ({
                 ) : (
                     <Text
                         style={{
-                            fontSize: 17,
+                            fontSize: 16,
                             fontWeight: 'bold',
                             color: isDisabled ? colors.gray : isBordered ? colors.main : '#fff',
                             textTransform: 'capitalize',

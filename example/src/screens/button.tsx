@@ -39,6 +39,14 @@ const ButtonScreen = () => {
             />
 
             <Button
+                text='main btn with shadow'
+                onPress={() => console.log('Main')}
+                style={{
+                    marginBottom: 20
+                }}
+                hasShadow
+            />
+            <Button
                 text='bordered btn'
                 onPress={() => console.log('bordered')}
                 style={{
