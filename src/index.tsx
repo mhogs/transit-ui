@@ -1,7 +1,11 @@
 import { NativeModules } from 'react-native'
+import { Button, Box, Flag, CheckBox } from './components'
 
-import { Box, Button, Flag } from './components'
-
-export { Box, Button, Flag }
+export {
+  Button,
+  Box,
+  Flag,
+  CheckBox
+}
 
 export default NativeModules.RNLogikeyModule
