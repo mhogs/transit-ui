@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, ReactNode } from 'react'
 import { View } from 'react-native'
+import { common_styles } from '../../themes/styles'
 
 type Props = {
   children?: ReactNode
@@ -10,14 +11,7 @@ const Box = ({ children, style }: Props) => {
   return (
     <View
       style={{
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 1,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        ...common_styles.shadow,
         paddingHorizontal: 16,
         paddingVertical: 10,
         backgroundColor: '#fff',
