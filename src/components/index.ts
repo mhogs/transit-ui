@@ -1,8 +1,4 @@
-import Button from "./Button";
-import Box from "./Box";
-import Flag from "./Flag";
-export {
-    Button,
-    Box,
-    Flag
-}
+import Box from './Box'
+import Button from './Button'
+import Flag from './Flag'
+export { Box, Button, Flag }
