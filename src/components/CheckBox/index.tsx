@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import colors from '../../themes/colors';
+import { colors } from '../../themes';
 
 type Props = {
     text?: string,

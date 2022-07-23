@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
-import colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 const TYPES = {
     success: colors.success,

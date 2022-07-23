@@ -1,5 +1,6 @@
 import React, { memo, useState, useCallback, useEffect } from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
+import { colors } from '../../themes'
 
 type Props = {
     text?: string,
@@ -37,10 +38,10 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                 paddingHorizontal: 12,
                 paddingVertical: 8,
                 borderRadius: 10,
-                borderColor: isChecked ? '#2E9D8D' : '#95a5a6',
+                borderColor: isChecked ? colors.main : colors.gray,
                 flexDirection: 'row',
                 alignItems: 'center',
-                backgroundColor: isDisabled ? '#95a5a620' : '#00000000',
+                backgroundColor: isDisabled ? colors.gray + 10 : colors.transparent,
                 ...style
             }}
             onPress={onPress}
@@ -52,7 +53,7 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                     height: 16,
                     borderRadius: 8,
                     borderWidth: 1,
-                    borderColor: isChecked ? '#2E9D8D' : '#95a5a6'
+                    borderColor: isChecked ? colors.main : colors.gray
                 }}
             />
             <View
@@ -64,7 +65,8 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                 style={{
                     fontSize: 12,
                     fontWeight: isChecked ? 'bold' : '300',
-                    flex: 1
+                    flex: 1,
+                    color: isDisabled ? colors.gray : colors.black_text
                 }}
                 numberOfLines={1}
             >{text}</Text>
@@ -73,6 +75,7 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                     style={{
                         fontSize: 12,
                         fontWeight: isChecked ? 'bold' : '300',
+                        color: isDisabled ? colors.gray : colors.black_text
                     }}
                 >{extraText}</Text>
             }

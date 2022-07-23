@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, ReactNode } from 'react'
 import { View } from 'react-native'
-import { common_styles } from '../../themes/styles'
+import { common_styles } from '../../themes'
 
 type Props = {
   children?: ReactNode

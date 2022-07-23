@@ -1,8 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
-import colors from '../../themes/colors'
-import { common_styles } from '../../themes/styles'
+import {colors, common_styles} from './../../themes'
 
 type Props = {
     text: string

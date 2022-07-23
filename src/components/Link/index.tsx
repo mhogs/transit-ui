@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import { Text } from 'react-native'
-import colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 type Props = {
     text: string,

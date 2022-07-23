@@ -4,9 +4,10 @@ import { Link } from 'logikey-ui'
 
 const Home = ({ navigation }: { navigation?: any }) => {
 
+
   return <ScrollView
     style={{
-      flex: 1,
+      flex: 1
     }}
     contentContainerStyle={{
       flexGrow: 1,
