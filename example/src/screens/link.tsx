@@ -28,6 +28,17 @@ const LinkScreen = () => {
                 text='Link'
                 onPress={() => Alert.alert("Hi! I'm a Link")}
             /> as pressable text</Text>
+
+            <Text style={{ marginVertical: 10 }}>Sometimes we need a <Link
+                text='a non pressable'
+                disabled
+            /> link</Text>
+
+            <Text>And some custom <Link
+                text='Color'
+                onPress={() => Alert.alert("Hi! I'm a Link")}
+                color='#9b59b6'
+            /></Text>
         </ScrollView>
     )
 }

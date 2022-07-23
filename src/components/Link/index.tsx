@@ -1,24 +1,38 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { Text } from 'react-native'
 import colors from '../../themes/colors'
 
 type Props = {
     text: string,
     onPress?: CallableFunction,
-    style?: any
+    style?: any,
+    disabled?: boolean,
+    color?: string
 }
 
-const Link = ({ text, onPress, style }: Props) => {
+const Link = ({ text, onPress, style, disabled, color }: Props) => {
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [customColor, setColor] = useState<string>();
+
+    useEffect(() => {
+        setColor(color)
+    }, [color])
+
+    useEffect(() => {
+        setIsDisabled(!!disabled)
+    }, [disabled])
 
     return (
         <Text
-            onPress={() => {
-                if (onPress) onPress()
-            }}
+            {...(!isDisabled && {
+                onPress: () => {
+                    if (onPress) onPress()
+                }
+            })}
             style={{
-                color: colors.main,
+                color: isDisabled ? colors.gray : (customColor || colors.main),
                 textDecorationLine: 'underline',
-                fontWeight: '600',
+                fontWeight: isDisabled ? '100' : '600',
                 ...style
             }}
         >
