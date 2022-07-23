@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { Button, Box, Flag, CheckBox } from 'logikey-ui'
-import Option from './Option';
+import { Button, Box, Flag, CheckBox, Option } from 'logikey-ui'
 
 const App = () => {
   const [isLoadingMain, setLoadingMain] = useState(false);
