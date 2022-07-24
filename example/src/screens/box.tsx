@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import { Button, Box, Flag, CheckBox, Option, Link } from 'logikey-ui'
 
 const BoxScreen = () => {
+    const [isChecked, setChecked] = useState<boolean>();
 
     return (
         <ScrollView
@@ -22,6 +23,28 @@ const BoxScreen = () => {
                 }}
             >
                 <Text>This is how our box looks like 🥳</Text>
+            </Box>
+
+            <Box
+                style={{
+                    marginBottom: 20
+                }}
+                selectable
+                value={isChecked}
+                onChange={setChecked}
+            >
+                <Text>A selectable box</Text>
+            </Box>
+
+
+            <Box
+                style={{
+                    marginBottom: 20
+                }}
+                selectable
+                disabled
+            >
+                <Text>A selectable -disabled- box</Text>
             </Box>
         </ScrollView>
     )
