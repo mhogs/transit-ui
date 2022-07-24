@@ -1,6 +1,7 @@
 import React, { memo, useState, useCallback, useEffect } from 'react'
-import { TouchableOpacity, Text, View } from 'react-native'
+import { Image, TouchableOpacity, Text, View } from 'react-native'
 import { colors } from '../../themes'
+import checked_icon from './../../assets/images/checked.png'
 
 type Props = {
     text?: string,
@@ -53,9 +54,23 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                     height: 16,
                     borderRadius: 8,
                     borderWidth: 1,
-                    borderColor: isChecked ? colors.main : colors.gray
+                    borderColor: isChecked ? colors.main : colors.gray,
+                    justifyContent: 'center',
+                    alignItems: 'center'
                 }}
-            />
+            >
+                {!!isChecked &&
+                    <Image
+                        source={checked_icon}
+                        style={{
+                            width: 8,
+                            height: 8,
+                            tintColor: colors.main
+                        }}
+                        resizeMode='contain'
+                    />
+                }
+            </View>
             <View
                 style={{
                     width: 10

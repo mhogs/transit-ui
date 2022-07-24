@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { colors } from '../../themes';
+import checked_icon from './../../assets/images/checked.png'
 
 type Props = {
     text?: string,
@@ -46,10 +47,24 @@ const CheckBox = ({ style, text, value, onChange, disabled }: Props) => {
                     borderColor: isChecked ? colors.main : colors.gray,
                     borderRadius: 3,
                     backgroundColor: isDisabled ? colors.gray + 30 : (isChecked ? colors.main : colors.transparent),
+                    justifyContent: 'center',
+                    alignItems: 'center'
                 }}
                 onPress={onPress}
                 disabled={isDisabled}
-            />
+            >
+                {!!isChecked &&
+                    <Image
+                        source={checked_icon}
+                        style={{
+                            width: 8,
+                            height: 8,
+                            tintColor: '#fff'
+                        }}
+                        resizeMode='contain'
+                    />
+                }
+            </TouchableOpacity>
             {!!text && <>
                 <View style={{ width: 10 }} />
                 <Text
