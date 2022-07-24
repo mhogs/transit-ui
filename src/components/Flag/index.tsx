@@ -14,7 +14,8 @@ type Props = {
     type?: 'success' | 'waiting' | 'canceled'
     style?: any
     textStyle?: any
-    hasBackground?: boolean
+    hasBackground?: boolean,
+    color?: string
 }
 
 const Flag = ({
@@ -23,13 +24,14 @@ const Flag = ({
     style,
     textStyle,
     hasBackground,
+    color
 }: Props) => {
     const [selectedType, setSelectedType] = useState<string>(TYPES.success)
     const [ishasBackground, setHasBackground] = useState<boolean>(false)
 
     useEffect(() => {
-        setSelectedType(TYPES[type || 'success'])
-    }, [type])
+        setSelectedType(color || TYPES[type || 'success'])
+    }, [type, color])
 
     useEffect(() => {
         setHasBackground(!!hasBackground)
@@ -44,7 +46,7 @@ const Flag = ({
                 paddingVertical: 2,
                 paddingHorizontal: 16,
                 alignSelf: 'flex-start',
-                backgroundColor: ishasBackground ? selectedType + 15 : 'transpernt',
+                backgroundColor: ishasBackground ? selectedType + 15 : colors.transparent,
                 ...style,
             }}
         >

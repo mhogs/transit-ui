@@ -18,7 +18,7 @@ const FlagScreen = () => {
         >
             <Text style={{ marginBottom: 20 }}>This is how our Flags looks like 🥳</Text>
 
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                 <Flag
                     text='done'
                 />
@@ -32,10 +32,18 @@ const FlagScreen = () => {
                 <Flag
                     text='canceled'
                     type='canceled'
+
+                />
+                <Flag
+                    text='Custom color'
+                    color='#3498db'
+                    style={{
+                        marginTop: 10
+                    }}
                 />
             </View>
 
-            <View style={{ flexDirection: 'row', marginTop: 10 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 30 }}>
                 <Flag
                     text='done'
                     hasBackground
@@ -52,6 +60,14 @@ const FlagScreen = () => {
                     text='canceled'
                     hasBackground
                     type='canceled'
+                />
+                <Flag
+                    text='Custom color'
+                    color='#3498db'
+                    style={{
+                        marginTop: 10
+                    }}
+                    hasBackground
                 />
             </View>
         </ScrollView>
