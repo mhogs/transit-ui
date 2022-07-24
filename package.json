@@ -27,7 +27,7 @@
     "!xcuserdata"
   ],
   "scripts": {
-    "compile": "rm -rf lib && tsc -p .",
+    "compile": "rm -rf lib && tsc -p . && copyfiles assets/**/*  lib/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "yarn compile",
     "test": "jest"
@@ -63,5 +63,8 @@
       "json",
       "node"
     ]
+  },
+  "dependencies": {
+    "copyfiles": "^2.4.1"
   }
 }

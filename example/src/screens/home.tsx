@@ -1,6 +1,6 @@
 import React, { } from 'react'
 import { ScrollView } from 'react-native'
-import { Link } from 'logikey-ui'
+import { Link, OptionsGroup } from 'logikey-ui'
 
 const Home = ({ navigation }: { navigation?: any }) => {
 
@@ -16,6 +16,7 @@ const Home = ({ navigation }: { navigation?: any }) => {
     }}
     showsVerticalScrollIndicator={false}
   >
+    <OptionsGroup />
     {[
       { name: 'Box' },
       { name: 'Button' },
