@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native'
-import { Button, Box, Flag, CheckBox, Option, Link } from './components'
+import { Button, Box, Flag, CheckBox, Option, Link, Message } from './components'
 import * as theams from './themes'
 
 export {
@@ -9,7 +9,8 @@ export {
   CheckBox,
   Option,
   Link,
-  theams
+  theams,
+  Message
 }
 
 export default NativeModules.RNLogikeyModule

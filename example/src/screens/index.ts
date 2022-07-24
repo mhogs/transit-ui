@@ -5,6 +5,7 @@ import Flag from "./flag";
 import CheckBox from './checkBox';
 import Option from './option'
 import Link from "./link";
+import Message from "./message";
 
 export {
     Home,
@@ -13,5 +14,6 @@ export {
     Flag,
     CheckBox,
     Option,
-    Link
+    Link,
+    Message
 }

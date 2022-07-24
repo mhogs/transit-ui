@@ -43,6 +43,10 @@ const App = () => {
           name="Link"
           component={screens.Link}
         />
+        <Stack.Screen
+          name="Message"
+          component={screens.Message}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
