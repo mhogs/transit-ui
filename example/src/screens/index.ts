@@ -6,6 +6,7 @@ import CheckBox from './checkBox';
 import Option from './option'
 import Link from "./link";
 import Message from "./message";
+import HintScreen from './hint';
 
 export {
     Home,
@@ -15,5 +16,6 @@ export {
     CheckBox,
     Option,
     Link,
-    Message
+    Message,
+    HintScreen
 }

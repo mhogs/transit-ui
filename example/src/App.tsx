@@ -47,6 +47,10 @@ const App = () => {
           name="Message"
           component={screens.Message}
         />
+        <Stack.Screen
+          name="Hint"
+          component={screens.HintScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
