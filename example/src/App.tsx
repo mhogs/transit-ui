@@ -40,6 +40,10 @@ const App = () => {
           component={screens.Option}
         />
         <Stack.Screen
+          name="OptionsGroup"
+          component={screens.OptionsGroup}
+        />
+        <Stack.Screen
           name="Link"
           component={screens.Link}
         />
@@ -49,7 +53,7 @@ const App = () => {
         />
         <Stack.Screen
           name="Hint"
-          component={screens.HintScreen}
+          component={screens.Hint}
         />
       </Stack.Navigator>
     </NavigationContainer>
