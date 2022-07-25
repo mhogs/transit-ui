@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { Flag } from 'logikey-ui'
+import { Flag, theams } from 'logikey-ui'
 
 const FlagScreen = () => {
 
@@ -16,7 +16,7 @@ const FlagScreen = () => {
             }}
             showsVerticalScrollIndicator={false}
         >
-            <Text style={{ marginBottom: 20 }}>This is how our Flags looks like 🥳</Text>
+            <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our Flags looks like 🥳</Text>
 
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                 <Flag

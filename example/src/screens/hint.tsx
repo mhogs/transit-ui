@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Text, ScrollView } from 'react-native'
-import { Hint } from 'logikey-ui'
+import { Hint, theams } from 'logikey-ui'
 
 const HintScreen = () => {
 
@@ -16,7 +16,7 @@ const HintScreen = () => {
             }}
             showsVerticalScrollIndicator={false}
         >
-            <Text style={{ marginBottom: 20 }}>This is how our Hints looks like 🥳</Text>
+            <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our Hints looks like 🥳</Text>
 
             <Hint
                 text='Test our hint with icon'

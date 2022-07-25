@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Text, ScrollView } from 'react-native'
-import { Message } from 'logikey-ui'
+import { Message, theams } from 'logikey-ui'
 
 const MessageScreen = () => {
 
@@ -16,7 +16,10 @@ const MessageScreen = () => {
             }}
             showsVerticalScrollIndicator={false}
         >
-            <Text style={{ marginBottom: 20 }}>This is how our Messages looks like 🥳</Text>
+            <Text style={{
+                marginBottom: 20,
+                color: theams.colors.black_text
+            }}>This is how our Messages looks like 🥳</Text>
             <Message
                 text="This's our message box with long text as much as possable to test how more than single line will looks like"
                 style={{

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Text, ScrollView, Alert } from 'react-native'
-import { Link } from 'logikey-ui'
+import { Link, theams } from 'logikey-ui'
 
 const LinkScreen = () => {
 
@@ -16,7 +16,7 @@ const LinkScreen = () => {
             }}
             showsVerticalScrollIndicator={false}
         >
-            <Text style={{ marginBottom: 20 }}>This is how our Links looks like 🥳</Text>
+            <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our Links looks like 🥳</Text>
             <Link
                 text='Press me'
                 onPress={() => Alert.alert("Hi! I'm a Link")}
@@ -24,21 +24,33 @@ const LinkScreen = () => {
                     marginBottom: 10
                 }}
             />
-            <Text>We cane use the <Link
-                text='Link'
-                onPress={() => Alert.alert("Hi! I'm a Link")}
-            /> as pressable text</Text>
+            <Text
+                style={{
+                    color: theams.colors.black_text
+                }}
+            >We cane use the <Link
+                    text='Link'
+                    onPress={() => Alert.alert("Hi! I'm a Link")}
+                /> as pressable text</Text>
 
-            <Text style={{ marginVertical: 10 }}>Sometimes we need a <Link
-                text='a non pressable'
-                disabled
-            /> link</Text>
+            <Text
+                style={{
+                    marginVertical: 10,
+                    color: theams.colors.black_text
+                }}>Sometimes we need a <Link
+                    text='a non pressable'
+                    disabled
+                /> link</Text>
 
-            <Text>And some custom <Link
-                text='Color'
-                onPress={() => Alert.alert("Hi! I'm a Link")}
-                color='#9b59b6'
-            /></Text>
+            <Text
+                style={{
+                    color: theams.colors.black_text
+                }}
+            >And some custom <Link
+                    text='Color'
+                    onPress={() => Alert.alert("Hi! I'm a Link")}
+                    color='#9b59b6'
+                /></Text>
         </ScrollView>
     )
 }

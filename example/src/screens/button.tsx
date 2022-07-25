@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Text, ScrollView } from 'react-native'
-import { Button } from 'logikey-ui'
+import { Button, theams } from 'logikey-ui'
 
 const ButtonScreen = () => {
     const [isLoadingMain, setLoadingMain] = useState(false);
@@ -28,7 +28,7 @@ const ButtonScreen = () => {
             showsVerticalScrollIndicator={false}
         >
 
-            <Text style={{ marginBottom: 20 }}>This is how our Buttons looks like 🥳</Text>
+            <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our Buttons looks like 🥳</Text>
 
             <Button
                 text='main btn'

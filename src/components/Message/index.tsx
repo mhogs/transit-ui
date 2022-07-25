@@ -53,7 +53,6 @@ const Message = ({
                 style={{
                     color: selectedType,
                     fontSize: 10,
-                    lineHeight: 0,
                     ...textStyle,
                 }}
             >

@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { Text, ScrollView } from 'react-native'
-import { CheckBox } from 'logikey-ui'
+import { CheckBox, theams } from 'logikey-ui'
 
 const CheckBoxScreen = () => {
     const [isChecked, setChecked] = useState<boolean>();
@@ -17,7 +17,7 @@ const CheckBoxScreen = () => {
             }}
             showsVerticalScrollIndicator={false}
         >
-            <Text style={{ marginBottom: 20 }}>This is how our CheckBoxs looks like 🥳</Text>
+            <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our CheckBoxs looks like 🥳</Text>
             <CheckBox
                 style={{
                     marginBottom: 20

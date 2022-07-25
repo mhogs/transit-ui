@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { Text, ScrollView } from 'react-native'
-import { Box } from 'logikey-ui'
+import { Box, theams } from 'logikey-ui'
 
 const BoxScreen = () => {
     const [isChecked, setChecked] = useState<boolean>();
@@ -22,7 +22,7 @@ const BoxScreen = () => {
                     marginBottom: 20
                 }}
             >
-                <Text>This is how our box looks like 🥳</Text>
+                <Text style={{ color: theams.colors.black_text }}>This is how our box looks like 🥳</Text>
             </Box>
 
             <Box
@@ -33,7 +33,7 @@ const BoxScreen = () => {
                 value={isChecked}
                 onChange={setChecked}
             >
-                <Text>A selectable box</Text>
+                <Text style={{ color: theams.colors.black_text }}>A selectable box</Text>
             </Box>
 
 
@@ -44,7 +44,7 @@ const BoxScreen = () => {
                 selectable
                 disabled
             >
-                <Text>A selectable -disabled- box</Text>
+                <Text style={{ color: theams.colors.black_text }}>A selectable -disabled- box</Text>
             </Box>
         </ScrollView>
     )

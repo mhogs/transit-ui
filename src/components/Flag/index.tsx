@@ -54,7 +54,7 @@ const Flag = ({
                 style={{
                     color: selectedType,
                     fontSize: 10,
-                    lineHeight: 0,
+                    lineHeight: 12,
                     textTransform: 'uppercase',
                     fontWeight: '600',
                     ...textStyle,

@@ -40,7 +40,7 @@ const Hint = ({ text, style, textStyle, hasIcon = true }: Props) => {
             style={{
                 color: colors.gray,
                 fontSize: 12,
-                lineHeight: 0,
+                lineHeight: 14,
                 ...textStyle
             }}
         >{text}</Text>
