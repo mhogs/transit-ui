@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useState } from 'react'
-import { View, Text, ScrollView, Image, Alert } from 'react-native'
-import { Button, Box, Flag, CheckBox, Option, Link } from 'logikey-ui'
+import React, { memo, useState } from 'react'
+import { Text, ScrollView } from 'react-native'
+import { Box } from 'logikey-ui'
 
 const BoxScreen = () => {
     const [isChecked, setChecked] = useState<boolean>();
