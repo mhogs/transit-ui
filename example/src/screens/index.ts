@@ -8,6 +8,8 @@ import Link from "./link";
 import Message from "./message";
 import Hint from './hint';
 import OptionsGroup from "./optionsGroup";
+import Counter from "./counter";
+
 export {
     Home,
     Box,
@@ -18,5 +20,6 @@ export {
     Link,
     Message,
     Hint,
-    OptionsGroup
+    OptionsGroup,
+    Counter
 }

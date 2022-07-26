@@ -25,7 +25,8 @@ const Home = ({ navigation }: { navigation?: any }) => {
         { name: 'OptionsGroup' },
         { name: 'Link' },
         { name: 'Message' },
-        { name: 'Hint' }
+        { name: 'Hint' },
+        { name: 'Counter' }
       ].map((item, idx) => <Link
         key={idx.toString()}
         text={item.name}

@@ -55,6 +55,10 @@ const App = () => {
           name="Hint"
           component={screens.Hint}
         />
+        <Stack.Screen
+          name="Counter"
+          component={screens.Counter}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
