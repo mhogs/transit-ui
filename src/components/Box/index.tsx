@@ -40,7 +40,7 @@ const Box = ({ children, style, selectable, value, onChange, disabled }: Props) 
   return (
     <View
       style={{
-        ...common_styles.shadow,
+        ...(!isDisabled && common_styles.shadow),
         paddingHorizontal: isSelectable ? 0 : 16,
         paddingVertical: isSelectable ? 0 : 10,
         backgroundColor: '#fff',

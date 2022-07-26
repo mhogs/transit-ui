@@ -1,9 +1,8 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import { ScrollView } from 'react-native'
-import { Link, OptionsGroup } from 'logikey-ui'
+import { Link } from 'logikey-ui'
 
 const Home = ({ navigation }: { navigation?: any }) => {
-  const [value, setValue] = useState<number>();
 
   return (
     <ScrollView
