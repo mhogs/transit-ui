@@ -43,7 +43,9 @@ const Box = ({ children, style, selectable, value, onChange, disabled }: Props) 
         ...(!isDisabled && common_styles.shadow),
         paddingHorizontal: isSelectable ? 0 : 16,
         paddingVertical: isSelectable ? 0 : 10,
-        backgroundColor: '#fff',
+        borderColor: isChecked ? colors.main : '#fff',
+        backgroundColor: isDisabled ? colors.gray + 20 : '#fff',
+        borderWidth: .5,
         marginVertical: 5,
         borderRadius: 8,
         ...style,
@@ -56,9 +58,7 @@ const Box = ({ children, style, selectable, value, onChange, disabled }: Props) 
               paddingHorizontal: 16,
               paddingVertical: 10,
               borderRadius: 8,
-              borderWidth: .5,
-              borderColor: isChecked ? colors.main : '#fff',
-              backgroundColor: isDisabled ? colors.gray + 20 : '#fff',
+              flex: 1,
             }}
             onPress={onPress}
             disabled={isDisabled}

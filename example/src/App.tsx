@@ -15,7 +15,7 @@ const App = () => {
           }
         }}
       >
-        
+
         <Stack.Screen
           name="Home"
           component={screens.Home}
@@ -63,6 +63,10 @@ const App = () => {
         <Stack.Screen
           name="Avatar"
           component={screens.Avatar}
+        />
+        <Stack.Screen
+          name="ItemSelector"
+          component={screens.ItemSelector}
         />
       </Stack.Navigator>
     </NavigationContainer>

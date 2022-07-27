@@ -9,5 +9,6 @@ import OptionsGroup from './OptionsGroup'
 import Hint from './Hint'
 import Counter from './Counter'
 import Avatar from './Avatar'
+import ItemSelector from './ItemSelector'
 
-export { Box, Button, Flag, CheckBox, Option, Link, Message, OptionsGroup, Hint, Counter,Avatar }
+export { Box, Button, Flag, CheckBox, Option, Link, Message, OptionsGroup, Hint, Counter, Avatar, ItemSelector }

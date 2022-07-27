@@ -9,7 +9,8 @@ import Message from "./message";
 import Hint from './hint';
 import OptionsGroup from "./optionsGroup";
 import Counter from "./counter";
-import Avatar  from "./avatar";
+import Avatar  from "./Avatar";
+import ItemSelector from './itemSelector';
 
 export {
     Home,
@@ -23,5 +24,6 @@ export {
     Hint,
     OptionsGroup,
     Counter,
-    Avatar
+    Avatar,
+    ItemSelector
 }
