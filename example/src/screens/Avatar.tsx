@@ -6,12 +6,12 @@ const AvatarScreen = () => {
   return (
     <ScrollView
       style={{
-          flex: 1,
+        flex: 1,
       }}
       contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: 16,
-          paddingVertical: 20
+        flexGrow: 1,
+        paddingHorizontal: 16,
+        paddingVertical: 20
       }}
       showsVerticalScrollIndicator={false}
     >
@@ -24,6 +24,8 @@ const AvatarScreen = () => {
         pixels by default*/}
 
       <Avatar />
+      
+      <Avatar shape='rectangle' />
 
       {/* changing the name of the avatar*/}
 
@@ -31,7 +33,7 @@ const AvatarScreen = () => {
 
       {/* changing the size of the avatar*/}
 
-      <Avatar name={'hani salah Eddine cherif'} size={80} />  
+      <Avatar name={'hani salah Eddine cherif'} size={80} />
 
       {/* changing the color of the background*/}
 
@@ -39,22 +41,22 @@ const AvatarScreen = () => {
         name={'hani salah Eddine cherif'}
         size={80}
         backgroundColor={'purple'}
-      />       
+      />
 
       {/* adding the picture to the avatar*/}
 
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
       />
-      
+
       {/* adding the shadow*/}
 
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
         hasShadow
       />
 
@@ -63,8 +65,8 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
-        onPress={()=>{}}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
+        onPress={() => { }}
         hasShadow
 
       />
@@ -74,8 +76,8 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
-        onPress={()=>{}}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
+        onPress={() => { }}
         hasShadow
         editable
       />
@@ -85,8 +87,8 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
-        onPress={()=>{}}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
+        onPress={() => { }}
         hasShadow
         selectable
       />

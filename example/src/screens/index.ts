@@ -9,7 +9,7 @@ import Message from "./message";
 import Hint from './hint';
 import OptionsGroup from "./optionsGroup";
 import Counter from "./counter";
-import Avatar  from "./Avatar";
+import Avatar  from "./avatar";
 
 export {
     Home,
