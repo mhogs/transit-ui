@@ -15,6 +15,7 @@ const App = () => {
           }
         }}
       >
+        
         <Stack.Screen
           name="Home"
           component={screens.Home}
@@ -58,6 +59,10 @@ const App = () => {
         <Stack.Screen
           name="Counter"
           component={screens.Counter}
+        />
+        <Stack.Screen
+          name="Avatar"
+          component={screens.Avatar}
         />
       </Stack.Navigator>
     </NavigationContainer>
