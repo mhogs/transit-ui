@@ -6,12 +6,12 @@ const AvatarScreen = () => {
   return (
     <ScrollView
       style={{
-        flex: 1,
+          flex: 1,
       }}
       contentContainerStyle={{
-        flexGrow: 1,
-        paddingHorizontal: 16,
-        paddingVertical: 20
+          flexGrow: 1,
+          paddingHorizontal: 16,
+          paddingVertical: 20
       }}
       showsVerticalScrollIndicator={false}
     >
@@ -50,7 +50,6 @@ const AvatarScreen = () => {
         size={80}
         src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
       />
-
       {/* adding the shadow*/}
 
       <Avatar
