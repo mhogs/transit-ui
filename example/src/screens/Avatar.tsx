@@ -46,7 +46,7 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
       />
       
       {/* adding the shadow*/}
@@ -54,7 +54,7 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
         hasShadow
       />
 
@@ -63,7 +63,7 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
         onPress={()=>{}}
         hasShadow
 
@@ -74,7 +74,7 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
         onPress={()=>{}}
         hasShadow
         editable
@@ -85,7 +85,7 @@ const AvatarScreen = () => {
       <Avatar
         name={'hani salah Eddine cherif'}
         size={80}
-        src={'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png'}
+        src={{ uri: 'https://freehali.com/freehali-assets/uploads/2020/01/cropped-me-878-2.png' }}
         onPress={()=>{}}
         hasShadow
         selectable
