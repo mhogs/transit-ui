@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import { ScrollView, Text } from 'react-native'
 import { Link } from 'logikey-ui'
-import { Avatar } from 'logikey-ui';
 
 const Home = ({ navigation }: { navigation?: any }) => {
 
