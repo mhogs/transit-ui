@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import { Link } from 'logikey-ui'
+import { Avatar } from 'logikey-ui';
 
 const Home = ({ navigation }: { navigation?: any }) => {
 
@@ -26,7 +27,8 @@ const Home = ({ navigation }: { navigation?: any }) => {
         { name: 'Link' },
         { name: 'Message' },
         { name: 'Hint' },
-        { name: 'Counter' }
+        { name: 'Counter' },
+        { name: 'Avatar'}
       ].map((item, idx) => <Link
         key={idx.toString()}
         text={item.name}
