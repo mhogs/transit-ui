@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState, useCallback } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ViewStyle } from 'react-native'
 import { colors } from '../../themes'
 import Option from '../Option'
 
@@ -15,7 +15,7 @@ type Props = {
     value?: number
     onSelect?: CallableFunction,
     disabled?: boolean,
-    style?: any
+    style?: ViewStyle
 }
 
 const OptionsGroup = ({ title, options, value, onSelect, disabled, style }: Props) => {

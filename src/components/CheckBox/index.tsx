@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { colors } from '../../themes';
 import checked_icon from './../../assets/images/checked.png'
 
 type Props = {
-    text?: string,
-    style?: any,
-    value?: boolean,
-    onChange?: CallableFunction,
+    text?: string
+    style?: ViewStyle
+    value?: boolean
+    onChange?: CallableFunction
     disabled?: boolean
 }
 

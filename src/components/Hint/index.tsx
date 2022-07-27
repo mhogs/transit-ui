@@ -1,12 +1,12 @@
 import React, { memo, useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ViewStyle, TextStyle } from 'react-native';
 import { colors } from '../../themes';
 import info_icon from './../../assets/images/info.png'
 
 type Props = {
-    text: string,
-    style?: any,
-    textStyle?: any,
+    text: string
+    style?: ViewStyle
+    textStyle?: TextStyle
     hasIcon?: boolean
 }
 

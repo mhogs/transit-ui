@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, ReactNode, useEffect, useState, useCallback } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View, ViewStyle } from 'react-native'
 import { colors, common_styles } from './../../themes'
 
 type Props = {
   children?: ReactNode
-  style?: any,
+  style?: ViewStyle,
   selectable?: boolean,
   value?: boolean,
   onChange?: CallableFunction,

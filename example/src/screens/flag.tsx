@@ -32,7 +32,6 @@ const FlagScreen = () => {
                 <Flag
                     text='canceled'
                     type='canceled'
-
                 />
                 <Flag
                     text='Custom color'

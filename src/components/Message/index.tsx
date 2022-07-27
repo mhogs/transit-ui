@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { Text, TextStyle, View, ViewStyle } from 'react-native'
 import { colors } from '../../themes'
 
 const TYPES = {
@@ -12,9 +12,9 @@ const TYPES = {
 type Props = {
     text: string
     type?: 'success' | 'warning' | 'error'
-    style?: any
-    textStyle?: any
-    hasBackground?: boolean,
+    style?: ViewStyle
+    textStyle?: TextStyle
+    hasBackground?: boolean
     color?: string
 }
 

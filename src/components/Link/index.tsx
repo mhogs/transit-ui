@@ -1,12 +1,12 @@
 import React, { memo, useState, useEffect } from 'react'
-import { Text } from 'react-native'
+import { Text, TextStyle } from 'react-native'
 import { colors } from '../../themes'
 
 type Props = {
-    text: string,
-    onPress?: CallableFunction,
-    style?: any,
-    disabled?: boolean,
+    text: string
+    onPress?: CallableFunction
+    style?: TextStyle
+    disabled?: boolean
     color?: string
 }
 
