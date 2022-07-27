@@ -28,6 +28,14 @@ const CounterScreen = () => {
                 max={19}
                 value={count}
                 onChange={setCount}
+                style={{
+                    marginBottom: 10
+                }}
+            />
+            <Counter
+                min={2}
+                max={19}
+                text='USD'
             />
         </ScrollView>
     )
