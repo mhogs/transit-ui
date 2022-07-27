@@ -6,12 +6,12 @@ const AvatarScreen = () => {
   return (
     <ScrollView
       style={{
-          flex: 1,
+        flex: 1,
       }}
       contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: 16,
-          paddingVertical: 20
+        flexGrow: 1,
+        paddingHorizontal: 16,
+        paddingVertical: 20
       }}
       showsVerticalScrollIndicator={false}
     >
@@ -24,8 +24,8 @@ const AvatarScreen = () => {
         pixels by default*/}
 
       <Avatar />
-      
-      <Avatar shape='rectangle' />
+
+      <Avatar shape='rectangle' selectable onPress={() => { }} />
 
       {/* changing the name of the avatar*/}
 
