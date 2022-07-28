@@ -12,50 +12,66 @@ type Props = {
     text?: string
     style?: ViewStyle
     buttonStyle?: ViewStyle
+    disabled?: boolean
 }
 
 const Counter = (({
     value = 0,
-    min = 0,
-    max = 10,
+    min,
+    max,
     onChange,
     text,
     style,
-    buttonStyle
+    buttonStyle,
+    disabled
 }: Props) => {
-    const [count, setCount] = useState<number>(0);
+    const [count, setCount] = useState<number>();
     const [minValue, setMin] = useState<number>(0);
     const [maxValue, setMax] = useState<number>(10);
+    const [isDisabled, setIsDisabled] = useState<boolean>()
+
+    useEffect(() => {
+        setIsDisabled(!!disabled)
+    }, [disabled])
 
     const onMinus = useCallback(() => {
-        if (minValue < count) {
+        if (typeof count === 'number' && minValue < count) {
             setCount(count - 1)
         }
     }, [count, minValue])
 
     const onPlus = useCallback(() => {
-        if (maxValue > count) {
+        if (typeof count === 'number' && maxValue > count) {
             setCount(count + 1)
         }
     }, [count, maxValue])
 
     useEffect(() => {
-        if (onChange) onChange(count)
+        if (onChange && typeof count === 'number')
+            onChange(count)
     }, [count])
 
     useEffect(() => {
-        setCount(value)
+        if (typeof value === 'number')
+            setCount(prev => prev !== value ? value : prev)
     }, [value])
 
     useEffect(() => {
-        setMin(min)
-        setCount(prev => prev < min ? min : prev)
-    }, [min])
+        if (typeof min === 'number') {
+            setMin(min)
+            if (typeof count === 'number' && count < min)
+                setCount(min)
+        }
+
+    }, [min, count])
 
     useEffect(() => {
-        setMax(max)
-        setCount(prev => prev > max ? max : prev)
-    }, [max])
+        if (typeof max === 'number') {
+            setMax(max)
+            if (typeof count === 'number' && count > max)
+                setCount(max)
+        }
+    }, [max, count])
 
     return (
         <View
@@ -69,11 +85,11 @@ const Counter = (({
             <TouchableOpacity
                 style={{
                     ...styles.btn,
-                    backgroundColor: count === minValue ? colors.gray + 40 : colors.main,
+                    backgroundColor: (isDisabled || count === minValue) ? colors.gray + 40 : colors.main,
                     ...buttonStyle
                 }}
                 onPress={onMinus}
-                disabled={count === minValue}
+                disabled={isDisabled || count === minValue}
             >
                 <Image
                     source={minus_icon}
@@ -97,11 +113,11 @@ const Counter = (({
             <TouchableOpacity
                 style={{
                     ...styles.btn,
-                    backgroundColor: count === maxValue ? colors.gray + 40 : colors.main,
+                    backgroundColor: (isDisabled || count === maxValue) ? colors.gray + 40 : colors.main,
                     ...buttonStyle
                 }}
                 onPress={onPlus}
-                disabled={count === maxValue}
+                disabled={isDisabled || count === maxValue}
             >
                 <Image
                     source={plus_icon}

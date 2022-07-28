@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import React, { memo, useEffect, useState } from 'react'
+import { ScrollView, Text } from 'react-native'
 import { Counter, theams } from 'logikey-ui'
 
 const CounterScreen = () => {
-    const [count, setCount] = useState<number>(0);
+    const [count, setCount] = useState<number>(2);
 
     useEffect(() => {
         console.log(count)
@@ -24,18 +24,22 @@ const CounterScreen = () => {
             <Text style={{ marginBottom: 20, color: theams.colors.black_text }}>This is how our Counters looks like 🥳</Text>
 
             <Counter
-                min={2}
-                max={19}
                 value={count}
                 onChange={setCount}
-                style={{
-                    marginBottom: 10
-                }}
             />
             <Counter
                 min={2}
                 max={19}
                 text='USD'
+                style={{
+                    marginVertical: 10
+                }}
+            />
+            <Counter
+                min={12}
+                max={18}
+                text='$'
+                disabled
             />
         </ScrollView>
     )
