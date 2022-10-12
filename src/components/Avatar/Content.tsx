@@ -1,8 +1,7 @@
 import { View, ViewStyle, Image } from 'react-native'
 import React, { memo } from 'react'
 import colors from '../../themes/colors';
-import edit_icon from './../../assets/images/edit.png';
-import checked_icon from './../../assets/images/checked.png';
+import { checked_icon, edit_icon } from '../../assets';
 
 type props = {
   editable?: boolean,

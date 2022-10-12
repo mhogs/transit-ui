@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, ReactNode, useEffect, useState, useCallback } from 'react'
-import { TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Pressable, View, ViewStyle } from 'react-native'
 import { colors, common_styles } from './../../themes'
 
 type Props = {
@@ -53,7 +53,7 @@ const Box = ({ children, style, selectable, value, onChange, disabled }: Props) 
     >
       {
         isSelectable ?
-          <TouchableOpacity
+          <Pressable
             style={{
               paddingHorizontal: 16,
               paddingVertical: 10,
@@ -64,7 +64,7 @@ const Box = ({ children, style, selectable, value, onChange, disabled }: Props) 
             disabled={isDisabled}
           >
             {children}
-          </TouchableOpacity>
+          </Pressable>
           :
           children
       }

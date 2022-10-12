@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Image, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Image, Text, Pressable, View, ViewStyle } from 'react-native'
 import { colors } from '../../themes';
 import checked_icon from './../../assets/images/checked.png'
 
@@ -39,7 +39,7 @@ const CheckBox = ({ style, text, value, onChange, disabled }: Props) => {
                 ...style
             }}
         >
-            <TouchableOpacity
+            <Pressable
                 style={{
                     width: 20,
                     height: 20,
@@ -64,7 +64,7 @@ const CheckBox = ({ style, text, value, onChange, disabled }: Props) => {
                         resizeMode='contain'
                     />
                 }
-            </TouchableOpacity>
+            </Pressable>
             {!!text && <>
                 <View style={{ width: 10 }} />
                 <Text

@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Image, StyleSheet, Text, Pressable, View, ViewStyle } from 'react-native'
+import { minus_icon, plus_icon } from '../../assets'
 import { colors } from './../../themes'
-import plus_icon from './../../assets/images/plus.png'
-import minus_icon from './../../assets/images/minus.png'
+
 
 type Props = {
     value?: number
@@ -82,7 +82,7 @@ const Counter = (({
                 ...style
             }}
         >
-            <TouchableOpacity
+            <Pressable
                 style={{
                     ...styles.btn,
                     backgroundColor: (isDisabled || count === minValue) ? colors.gray + 40 : colors.main,
@@ -96,7 +96,7 @@ const Counter = (({
                     style={styles.icon}
                     resizeMode='contain'
                 />
-            </TouchableOpacity>
+            </Pressable>
             <View style={{ width: 60, alignItems: 'center' }}>
                 <Text style={{
                     fontSize: text ? 14 : 16,
@@ -110,7 +110,7 @@ const Counter = (({
                     }}>{!!text && ` ${text}`}</Text></Text>
             </View>
 
-            <TouchableOpacity
+            <Pressable
                 style={{
                     ...styles.btn,
                     backgroundColor: (isDisabled || count === maxValue) ? colors.gray + 40 : colors.main,
@@ -124,7 +124,7 @@ const Counter = (({
                     style={styles.icon}
                     resizeMode='contain'
                 />
-            </TouchableOpacity>
+            </Pressable>
         </View>
     )
 })

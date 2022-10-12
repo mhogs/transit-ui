@@ -1,7 +1,8 @@
 import React, { memo, useState, useCallback, useEffect } from 'react'
-import { Image, TouchableOpacity, Text, View, ViewStyle } from 'react-native'
+import { Image, Pressable, Text, View, ViewStyle } from 'react-native'
+import { checked_icon } from '../../assets'
 import { colors } from '../../themes'
-import checked_icon from './../../assets/images/checked.png'
+
 
 type Props = {
     text?: string
@@ -33,7 +34,7 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
     }, [disabled])
 
     return (
-        <TouchableOpacity
+        <Pressable
             style={{
                 borderWidth: 1,
                 paddingHorizontal: 12,
@@ -94,7 +95,7 @@ const Option = ({ text, extraText, style, value, onChange, disabled }: Props) =>
                     }}
                 >{extraText}</Text>
             }
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 

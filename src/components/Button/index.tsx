@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { memo, useEffect, useState } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { ActivityIndicator, Text, Pressable, View, ViewStyle } from 'react-native'
 import { colors, common_styles } from './../../themes'
 
 type Props = {
@@ -44,7 +44,7 @@ const Button = ({
     }, [loading])
 
     return (
-        <TouchableOpacity
+        <Pressable
             style={{
                 backgroundColor: isBordered
                     ? colors.transparent
@@ -86,7 +86,7 @@ const Button = ({
                     </Text>
                 )}
             </View>
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 
