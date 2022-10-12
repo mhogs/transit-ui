@@ -1,5 +1,5 @@
 {
-  "name": "logikey-dslib-ts",
+  "name": "logikey-dslib",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -14,12 +14,8 @@
   "dependencies": {
     "expo": "~46.0.13",
     "expo-status-bar": "~1.4.0",
-    "jest": "^26.6.3",
-    "jest-expo": "^46.0.1",
     "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-native": "0.69.6",
-    "react-native-web": "~0.18.7"
+    "react-native": "0.69.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -33,6 +29,8 @@
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.69.1",
     "babel-loader": "^8.2.5",
+    "jest": "^26.6.3",
+    "jest-expo": "^46.0.1",
     "typescript": "~4.3.5"
   },
   "private": true,
