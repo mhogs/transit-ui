@@ -33,7 +33,7 @@ type MyTabViewType = {
     }) => JSX.Element | null
 }
 
-const MyTabView = (props: MyTabViewType) => {
+const Tabs = (props: MyTabViewType) => {
     const {
         enabledSwip = false,
         tabRoutes,
@@ -114,11 +114,12 @@ const MyTabView = (props: MyTabViewType) => {
 
 const getStyles = (palette: paletteType) => {
     return StyleSheet.create({
+
         container: {
             flex: 1,
         },
+
         tapBar: {
-            width: "100%",
             flexDirection: "row",
             alignItems: "center",
             height: 50,
@@ -129,7 +130,8 @@ const getStyles = (palette: paletteType) => {
         },
         scrollable: {
             flexDirection: "row",
-            height: "100%"
+            height: "100%",
+            gap: 10
         },
         tabItemFocused: {
             flex: 1,
@@ -146,19 +148,16 @@ const getStyles = (palette: paletteType) => {
             height: "100%",
             backgroundColor: "transparent",
             justifyContent: "center",
-
         },
         focusedLabel: {
             color: palette.white,
-            fontSize: 14,
             textAlign: "center",
         },
         nonFocusedLabel: {
             color: palette.gray,
-            fontSize: 14,
             textAlign: "center",
         },
     });
 };
 
-export default memo(MyTabView)
+export default memo(Tabs)
