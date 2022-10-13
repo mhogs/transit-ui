@@ -1,4 +1,4 @@
-import colors from "./colors";
-import { common_styles } from "./styles";
+import colors, { paletteType } from './colors'
+import { common_styles } from './styles'
 
-export { colors, common_styles }
+export { colors, common_styles, paletteType }
