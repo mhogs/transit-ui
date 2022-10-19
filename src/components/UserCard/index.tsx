@@ -3,6 +3,8 @@ import React, { memo, useState } from 'react';
 import { colors, common_styles } from '../../themes';
 import { usePlatform } from '../../hooks';
 import { User } from './types';
+import { case_icon, clock_icon, delete_icon, edit_icon, rating_icon } from '../../assets';
+import Vehicule from './Vehicule';
 
 
 
@@ -12,72 +14,120 @@ const UserCard = (props: User) => {
 
     if (platform === "native")
         return (
+
             <View style={nativeStyles.container}>
-                <View style={nativeStyles.actionsContainer}>
-                    <Pressable style={nativeStyles.actionsButton}>
-                        <Text style={[nativeStyles.actionsButtonText, { color: colors.success }]}>
-                            Edit
-                        </Text>
-                    </Pressable>
-                    <Pressable style={nativeStyles.actionsButton}>
-                        <Text style={[nativeStyles.actionsButtonText, { color: colors.canceled }]}>
-                            Delete
-                        </Text>
-                    </Pressable>
-                </View>
-                <View>
-                    <View style={nativeStyles.userImageContainer}>
-                        <View style={nativeStyles.userImageWraper}>
-                            <Image
-                                source={{ uri: props.profile_image ?? "https://i.picsum.photos/id/1009/200/200.jpg" }}
-                                style={nativeStyles.userImage}
-                                resizeMode={'cover'}
-                            />
-                        </View>
-                    </View>
-                </View>
-                <View style={nativeStyles.userInfoContainer}>
-                    <Text style={nativeStyles.userNameText}>
-                        {props.firstName ?? "First Name"} {props.firstName ?? "Last Name"}
-                    </Text>
-                    <Text style={[nativeStyles.userAccontStatusText, { color: props.approved ? colors.black_text : colors.canceled }]}>
-                        Account {props.approved ? "Approved" : "Not Approved"}
-                    </Text>
-                    <View style={nativeStyles.userDetailsContainer}>
-                        <View style={nativeStyles.userInfo}>
-                            <Text style={nativeStyles.userInfoKeyText}>
-                                phone number :
+                <>
+                    <View style={nativeStyles.actionsContainer}>
+                        <Pressable style={nativeStyles.actionsButton}>
+                            <Image source={edit_icon} style={{ width: 7, height: 7 }} />
+                            <Text style={[nativeStyles.actionsButtonText, { color: colors.success }]}>
+                                Edit
                             </Text>
-                            <Text style={nativeStyles.userInfoValueText}>
-                                {props.mobile ?? "-"}
+                        </Pressable>
+                        <Pressable style={nativeStyles.actionsButton}>
+                            <Image source={delete_icon} style={{ width: 7, height: 7 }} />
+                            <Text style={[nativeStyles.actionsButtonText, { color: colors.canceled }]}>
+                                Delete
                             </Text>
-                        </View>
-                        <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
-                            <Text style={nativeStyles.userInfoKeyText}>
-                                E-mail :
-                            </Text>
-                            <Text style={nativeStyles.userInfoValueText}>
-                                {props.email ?? "-"}
-                            </Text>
-                        </View>
-                        <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
-                            <Text style={nativeStyles.userInfoKeyText}>
-                                Bank Info :
-                            </Text>
-                            <Text style={nativeStyles.userInfoValueText}>
-                                ???
-                            </Text>
-                        </View>
+                        </Pressable>
                     </View>
                     <View>
+                        <View style={[nativeStyles.userImageContainer, { backgroundColor: props.approved ? colors.bg_rimary : colors.disabled }]}>
+                            <View style={[nativeStyles.userImageWraper, { backgroundColor: props.approved ? colors.bg_rimary : colors.disabled }]}>
+                                <View style={{ position: 'relative' }}>
+                                    <Image
+                                        source={{ uri: "https://i.picsum.photos/id/1009/200/200.jpg" }}
+                                        style={nativeStyles.userImage}
+                                    />
+                                    {props.authorized &&
+                                        <View style={nativeStyles.caseIconWraper}>
+                                            <Image source={case_icon} style={{ width: 10, height: 8 }} />
+                                        </View>
+                                    }
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={nativeStyles.TimerContainer}>
+                        <Pressable style={nativeStyles.TimerWraper}>
+                            <Image source={clock_icon} style={{ width: 20, height: 16 }} />
+                        </Pressable>
+                    </View>
+                    <View style={nativeStyles.userInfoContainer}>
+                        <Text style={nativeStyles.userNameText}>
+                            {props.firstName ?? "First Name"} {props.firstName ?? "Last Name"}
+                        </Text>
+                        <Text style={[nativeStyles.userAccontStatusText, { color: props.approved ? colors.black_text : colors.canceled }]}>
+                            Account {props.approved ? "Approved" : "Not Approved"}
+                        </Text>
+                        <View style={nativeStyles.ratingWraper}>
+                            <Text style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
+                                3.9
+                            </Text>
+                            <Image source={rating_icon} style={{ width: 12, height: 12 }} />
+                        </View>
+                        <View style={nativeStyles.userDetailsContainer}>
+                            <View style={nativeStyles.userInfo}>
+                                <Text style={nativeStyles.userInfoKeyText}>
+                                    phone number :
+                                </Text>
+                                <Text style={nativeStyles.userInfoValueText}>
+                                    {props.mobile ?? "-"}
+                                </Text>
+                            </View>
+                            <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
+                                <Text style={nativeStyles.userInfoKeyText}>
+                                    E-mail :
+                                </Text>
+                                <Text style={nativeStyles.userInfoValueText}>
+                                    {props.email ?? "-"}
+                                </Text>
+                            </View>
+                            <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
+                                <Text style={nativeStyles.userInfoKeyText}>
+                                    Bank Info :
+                                </Text>
+                                <Text style={nativeStyles.userInfoValueText}>
+                                    ???
+                                </Text>
+                            </View>
+
+                            <View style={nativeStyles.footerContainer}>
+                                {props.approved ?
+                                    <>
+                                        <View style={nativeStyles.footerButton}>
+                                            <Text style={nativeStyles.footerButtonText}>{"???"}</Text>
+                                            <Text style={nativeStyles.footerButtonSubText}>Booking</Text>
+                                        </View>
+                                        <View style={{ width: 10 }} />
+
+                                        <View style={nativeStyles.footerButton}>
+                                            <Text style={nativeStyles.footerButtonText}>{props.walletBalance}</Text>
+                                            <Text style={nativeStyles.footerButtonSubText}>wallet balance</Text>
+                                        </View>
+                                    </>
+
+                                    :
+                                    <View style={[nativeStyles.footerButton, { backgroundColor: colors.disabled, paddingVertical: 6 }]}>
+                                        <Text style={[nativeStyles.footerButtonText, { fontSize: 20 }]}>0 $</Text>
+                                    </View>
+
+                                }
+                            </View>
+
+                        </View>
 
                     </View>
-                </View>
+                </>
+                {/** car Info */}
+                <Vehicule />
             </View>
         )
 
     return (
-        <></>
+        <div>
+            web component
+        </div>
     )
 }
 
@@ -96,14 +146,14 @@ const nativeStyles = StyleSheet.create({
         position: "relative",
         borderRadius: 5,
         shadowColor: '#C9C8C8',
+        elevation: 5,
         shadowOffset: { width: -2, height: 4 },
-        shadowOpacity: 0,
+        shadowOpacity: 1,
         shadowRadius: 5,
         width: "100%",
         backgroundColor: "#fff",
         height: "auto",
         paddingVertical: 12,
-
     },
     actionsContainer: {
         position: "absolute",
@@ -119,18 +169,26 @@ const nativeStyles = StyleSheet.create({
     actionsButton: {
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
+        elevation: 3,
+        backgroundColor: "#fff",
+        width: 80,
+        paddingVertical: 4,
+        borderRadius: 5
     },
     actionsButtonText: {
         textTransform: 'uppercase',
         fontWeight: "600",
-        fontSize: 10
+        fontSize: 10,
+        marginLeft: 3
     },
+
     /** user image block */
     userImageContainer: {
         height: 78,
         width: "100%",
-        backgroundColor: colors.bg_rimary,
-        marginTop: 27,
+
+        marginTop: 30,
         overflow: "visible",
         alignItems: "center",
         justifyContent: "center"
@@ -138,19 +196,52 @@ const nativeStyles = StyleSheet.create({
     userImageWraper: {
         width: 132,
         height: 132,
-        backgroundColor: colors.bg_rimary,
         borderRadius: 132,
         justifyContent: "center",
         alignItems: "center"
     },
+    caseIconWraper: {
+        position: "absolute",
+        bottom: 10,
+        right: -3,
+        paddingVertical: 5,
+        paddingHorizontal: 4,
+        borderRadius: 16,
+        borderWidth: 3,
+        borderColor: "#fff",
+        backgroundColor: colors.waiting,
+    },
+
     userImage: {
         width: 100,
         height: 100,
         borderRadius: 100,
+        backgroundColor: "#fff"
+    },
+    ratingWraper: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    /** timer  */
+    TimerContainer: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        paddingHorizontal: 8,
+        paddingVertical: 5
+    },
+    TimerWraper: {
+        padding: 5,
+        borderRadius: 3,
+        backgroundColor: "#fff",
+        shadowColor: '#000',
+        elevation: 2,
+        shadowOffset: { width: 2, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 5,
     },
     /** user info */
     userInfoContainer: {
-        marginTop: 35,
+
         width: "100%",
         alignItems: "center"
     },
@@ -181,6 +272,28 @@ const nativeStyles = StyleSheet.create({
         fontSize: 10,
         fontWeight: "400"
     },
-
+    footerContainer: {
+        marginTop: 10,
+        flexDirection: "row",
+        width: "100%",
+    },
+    footerButton: {
+        backgroundColor: colors.bg_rimary,
+        flexGrow: 1,
+        alignItems: "center",
+        borderRadius: 5,
+        paddingTop: 6,
+        paddingBottom: 3
+    },
+    footerButtonText: {
+        color: "#fff",
+        fontSize: 14,
+        fontWeight: "700",
+    },
+    footerButtonSubText: {
+        color: "#fff",
+        fontSize: 8,
+        lineHeight: 9.68
+    }
 
 })
