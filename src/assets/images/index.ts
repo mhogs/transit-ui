@@ -3,5 +3,7 @@ import edit_icon from "./edit.png";
 import plus_icon from "./plus.png";
 import minus_icon from "./minus.png";
 import info_icon from "./info.png";
+import truck_icon from "./truck.png";
+import robot_icon from "./robot.png"
 
-export { checked_icon, edit_icon, plus_icon, minus_icon, info_icon };
+export { checked_icon, edit_icon, plus_icon, minus_icon, info_icon, truck_icon, robot_icon };
