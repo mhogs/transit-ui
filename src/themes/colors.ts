@@ -7,6 +7,7 @@ export type paletteType = {
   success: string
   waiting: string
   canceled: string
+  bg_rimary: string
 }
 const colors: paletteType = {
   main: '#2E9D8D',
@@ -17,6 +18,7 @@ const colors: paletteType = {
   success: '#2ecc71',
   waiting: '#EB9B2D',
   canceled: '#c0392b',
+  bg_rimary: '#319E8E',
 }
 
 export default colors

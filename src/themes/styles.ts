@@ -13,7 +13,10 @@ export const common_styles = StyleSheet.create({
   },
   centred: {
     flex: 1,
+    padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#f2f2f2',
   },
 })
