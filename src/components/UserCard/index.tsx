@@ -16,7 +16,7 @@ type UserCardProps = {
 
 }
 
-const PLATFORM = usePlatform()
+const { PLATFORM, includeUnitIfWeb } = usePlatform()
 
 const UserCard = (props: UserCardProps) => {
     const { user, onDelete, onEdit } = props
@@ -494,7 +494,4 @@ const webStyles: any = {
     }
 }
 
-function includeUnitIfWeb(value: number): any {
-    if (PLATFORM === "native") return value
-    return `${value}px`
-}
+

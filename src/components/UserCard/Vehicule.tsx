@@ -7,7 +7,7 @@ import { defaultFlex } from '../../themes/styles'
 import { VehicleType } from './types'
 
 
-const PLATFORM = usePlatform()
+const { PLATFORM, includeUnitIfWeb } = usePlatform()
 
 
 type VehiculeProps = {
@@ -185,10 +185,5 @@ const webStyles: any = {
         ...nativeStyles.container,
         boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
     }
-
 }
 
-function includeUnitIfWeb(value: number): any {
-    if (PLATFORM === "native") return value
-    return `${value}px`
-}

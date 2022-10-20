@@ -13,12 +13,14 @@ import { colors, common_styles } from '../../themes'
 import { usePlatform } from '../../hooks'
 import { Driver } from './types'
 import { rating_icon, robot_icon, driver_truck_icon } from '../../assets'
+import { css } from './css'
+
+const { PLATFORM, includeUnitIfWeb } = usePlatform()
 
 const DriverCard = (props: Driver) => {
   console.log(props)
-  const platform = usePlatform()
 
-  if (platform === 'native')
+  if (PLATFORM === 'native')
     return (
       <View style={nativeStyles.container}>
         <View style={nativeStyles.headerContainer}>
@@ -68,7 +70,7 @@ const DriverCard = (props: Driver) => {
               { color: props.approved ? colors.main : colors.canceled },
             ]}
           >
-            {props.approved? 'Account Approved': 'Account Not Approved'}
+            {props.approved ? 'Account Approved' : 'Account Not Approved'}
           </Text>
           <View style={nativeStyles.ratingWraper}>
             <Text style={{ fontSize: 10, marginRight: 3 }}>
@@ -135,8 +137,8 @@ const DriverCard = (props: Driver) => {
                   backgroundColor: props.paymentStatus === 'not paid'
                     ? colors.canceled
                     : props.paymentStatus === 'waiting'
-                      ? colors.waiting 
-                    : colors.bg_rimary,
+                      ? colors.waiting
+                      : colors.bg_rimary,
                 },
               ]}
             >
@@ -153,30 +155,32 @@ const DriverCard = (props: Driver) => {
       </View>
     )
 
-  return <></>
+  return (
+    <div style={{}} className="driver_card">
+      <style>
+        {css}
+      </style>
+
+    </div>
+  )
 }
 
 export default memo(DriverCard)
 
-const webStyles = {
-  container: {
-    borderRadius: '5px',
-    boxShadow: '#0px 0px 10px #C9C8C8',
-  },
-}
+
 
 const nativeStyles = StyleSheet.create({
   container: {
     position: 'relative',
-    borderRadius: 5,
+    borderRadius: includeUnitIfWeb(5),
     shadowColor: '#C9C8C8',
     elevation: 2,
-    shadowRadius: 5,
+    shadowRadius: includeUnitIfWeb(5),
     width: '100%',
     backgroundColor: '#fff',
     height: 'auto',
-    padding: 24,
-    minHeight: 300,
+    padding: includeUnitIfWeb(24),
+    minHeight: includeUnitIfWeb(300),
   },
 
   headerContainer: {
@@ -186,17 +190,17 @@ const nativeStyles = StyleSheet.create({
     width: '100%',
   },
   truckContainer: {
-    borderRadius: 5,
+    borderRadius: includeUnitIfWeb(5),
     backgroundColor: '#fff',
-    paddingHorizontal: 11,
-    paddingVertical: 5,
+    paddingHorizontal: includeUnitIfWeb(11),
+    paddingVertical: includeUnitIfWeb(5),
     shadowColor: colors.black_text,
-    shadowRadius: 5,
+    shadowRadius: includeUnitIfWeb(5),
     elevation: 3,
   },
   truckIcon: {
-    width: 16,
-    height: 12,
+    width: includeUnitIfWeb(16),
+    height: includeUnitIfWeb(12),
     tintColor: colors.main,
   },
 
@@ -206,18 +210,18 @@ const nativeStyles = StyleSheet.create({
     alignItems: 'center',
   },
   robotContainer: {
-    borderRadius: 100,
-    borderWidth: 5,
+    borderRadius: includeUnitIfWeb(100),
+    borderWidth: includeUnitIfWeb(5),
     borderColor: colors.main,
-    padding: 15,
+    padding: includeUnitIfWeb(15),
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   robotIcon: {
-    width: 70,
-    height: 70,
+    width: includeUnitIfWeb(70),
+    height: includeUnitIfWeb(70),
   },
 
   driverInfoContainer: {
@@ -230,21 +234,21 @@ const nativeStyles = StyleSheet.create({
     alignItems: 'center',
   },
   driverNameText: {
-    fontSize: 14,
+    fontSize: includeUnitIfWeb(14),
     fontWeight: '600',
   },
   onlineIndicator: {
-    borderRadius: 5,
-    width: 5,
-    height: 5,
-    marginLeft: 5,
+    borderRadius: includeUnitIfWeb(5),
+    width: includeUnitIfWeb(5),
+    height: includeUnitIfWeb(5),
+    marginLeft: includeUnitIfWeb(5),
   },
   driverAccountStatusText: {
-    fontSize: 8,
-    marginTop: 4,
+    fontSize: includeUnitIfWeb(8),
+    marginTop: includeUnitIfWeb(4),
   },
   ratingWraper: {
-    marginTop: 2,
+    marginTop: includeUnitIfWeb(2),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -260,11 +264,11 @@ const nativeStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   userInfoItemKeyText: {
-    fontSize: 10,
+    fontSize: includeUnitIfWeb(10),
     fontWeight: '600',
   },
   userInfoItemValueText: {
-    fontSize: 10,
+    fontSize: includeUnitIfWeb(10),
     fontWeight: '400',
   },
 
@@ -277,18 +281,22 @@ const nativeStyles = StyleSheet.create({
   driverStatsButton: {
     backgroundColor: colors.bg_rimary,
     alignItems: 'center',
-    borderRadius: 5,
-    paddingTop: 6,
-    paddingBottom: 3,
+    borderRadius: includeUnitIfWeb(5),
+    paddingTop: includeUnitIfWeb(6),
+    paddingBottom: includeUnitIfWeb(3),
   },
   driverStatsButtonText: {
-    fontSize: 14,
+    fontSize: includeUnitIfWeb(14),
     fontWeight: '700',
     color: '#fff',
   },
   driverStatsButtonSubText: {
-    fontSize: 8,
-    lineHeight: 9.68,
+    fontSize: includeUnitIfWeb(8),
+    lineHeight: includeUnitIfWeb(9.68),
     color: '#fff',
   },
 })
+
+const webStyles: any = {
+  ...nativeStyles,
+}
