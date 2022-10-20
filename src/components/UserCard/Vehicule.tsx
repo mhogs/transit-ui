@@ -1,68 +1,62 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { truck_icon } from '../../assets'
-import { usePlatform } from '../../hooks'
 import { colors } from '../../themes'
-import { defaultFlex } from '../../themes/styles'
 import { VehicleType } from './types'
-
-
-const { PLATFORM, includeUnitIfWeb } = usePlatform()
-
 
 type VehiculeProps = {
     data?: VehicleType & { licenceImage?: string }
 }
 const Vehicule = (props: VehiculeProps) => {
 
-    if (PLATFORM === "native")
-        return (
-            <View style={nativeStyles.root}>
-                <View style={nativeStyles.container}>
-                    <View style={nativeStyles.typeContainer}>
-                        <Text style={nativeStyles.typeText}>
-                            Truck
-                        </Text>
-                        <Image source={truck_icon} style={nativeStyles.vehiculeIcon} />
-                    </View>
-                    <View style={nativeStyles.infoscontainer} >
-                        <View style={nativeStyles.infoWraper}>
-                            <Text style={nativeStyles.infoKeyText}>
-                                brand / mark
-                            </Text>
-                            <Text style={nativeStyles.infoValueText}>
-                                Volvo
-                            </Text>
-                        </View>
-                        <View style={nativeStyles.infoWraper}>
-                            <Text style={nativeStyles.infoKeyText}>
-                                Model
-                            </Text>
-                            <Text style={nativeStyles.infoValueText}>
-                                2000
-                            </Text>
-                        </View>
-                        <View style={nativeStyles.infoWraper}>
-                            <Text style={nativeStyles.infoKeyText}>
-                                Plate number
-                            </Text>
-                            <Text style={nativeStyles.infoValueText}>
-                                46-326-87
-                            </Text>
-                        </View>
-
-                    </View>
-                    <View style={nativeStyles.licenceContainer}>
+    //if (PLATFORM === "native")
+    return (
+        <View style={nativeStyles.root}>
+            <View style={nativeStyles.container}>
+                <View style={nativeStyles.typeContainer}>
+                    <Text style={nativeStyles.typeText}>
+                        Truck
+                    </Text>
+                    <Image source={truck_icon} style={nativeStyles.vehiculeIcon} />
+                </View>
+                <View style={nativeStyles.infoscontainer} >
+                    <View style={nativeStyles.infoWraper}>
                         <Text style={nativeStyles.infoKeyText}>
-                            License image
+                            brand / mark
                         </Text>
-                        <Image source={{ uri: props.data?.licenceImage ?? "https://picsum.photos/200/300" }} style={nativeStyles.licenceImage} />
+                        <Text style={nativeStyles.infoValueText}>
+                            Volvo
+                        </Text>
                     </View>
+                    <View style={nativeStyles.infoWraper}>
+                        <Text style={nativeStyles.infoKeyText}>
+                            Model
+                        </Text>
+                        <Text style={nativeStyles.infoValueText}>
+                            2000
+                        </Text>
+                    </View>
+                    <View style={nativeStyles.infoWraper}>
+                        <Text style={nativeStyles.infoKeyText}>
+                            Plate number
+                        </Text>
+                        <Text style={nativeStyles.infoValueText}>
+                            46-326-87
+                        </Text>
+                    </View>
+
+                </View>
+                <View style={nativeStyles.licenceContainer}>
+                    <Text style={nativeStyles.infoKeyText}>
+                        License image
+                    </Text>
+                    <Image source={{ uri: props.data?.licenceImage ?? "https://picsum.photos/200/300" }} style={nativeStyles.licenceImage} />
                 </View>
             </View>
-        )
+        </View>
+    )
 
-    return (
+    /*return (
         <div style={webStyles.root}>
             <div style={webStyles.container}>
                 <div style={webStyles.typeContainer}>
@@ -108,7 +102,7 @@ const Vehicule = (props: VehiculeProps) => {
                 </div>
             </div>
         </div>
-    )
+    )*/
 }
 
 export default React.memo(Vehicule)
@@ -116,17 +110,16 @@ export default React.memo(Vehicule)
 
 const nativeStyles = StyleSheet.create({
     root: {
-        paddingLeft: includeUnitIfWeb(6),
-        paddingRight: includeUnitIfWeb(6),
-        paddingTop: includeUnitIfWeb(12)
+        paddingLeft: 6,
+        paddingRight: 6,
+        paddingTop: 12
     },
     container: {
-        ...defaultFlex,
-        paddingLeft: includeUnitIfWeb(12),
-        paddingRight: includeUnitIfWeb(12),
-        paddingTop: includeUnitIfWeb(6),
-        paddingBottom: includeUnitIfWeb(6),
-        borderRadius: includeUnitIfWeb(5),
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 6,
+        paddingBottom: 6,
+        borderRadius: 5,
         flexDirection: "row",
         width: "100%",
         alignItems: "center",
@@ -136,54 +129,47 @@ const nativeStyles = StyleSheet.create({
         elevation: 3
     },
     vehiculeIcon: {
-        width: includeUnitIfWeb(34),
-        height: includeUnitIfWeb(34),
-        marginTop: includeUnitIfWeb(6)
+        width: 34,
+        height: 34,
+        marginTop: 6
     },
     typeContainer: {
-        ...defaultFlex,
+
     },
     typeText: {
-        fontSize: includeUnitIfWeb(14),
+        fontSize: 14,
         fontWeight: "700",
         color: "#fff"
     },
 
     infoscontainer: {
-        ...defaultFlex,
+
     },
     infoWraper: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: includeUnitIfWeb(4),
+        marginTop: 4,
     },
     infoKeyText: {
-        fontSize: includeUnitIfWeb(12),
+        fontSize: 12,
         fontWeight: "500",
         color: "#fff"
     },
     infoValueText: {
-        fontSize: includeUnitIfWeb(10),
-        marginLeft: includeUnitIfWeb(6),
+        fontSize: 10,
+        marginLeft: 6,
         fontWeight: "300",
         color: "#fff"
     },
     licenceContainer: {
-        ...defaultFlex,
+
     },
     licenceImage: {
-        width: includeUnitIfWeb(94),
-        height: includeUnitIfWeb(54),
-        marginTop: includeUnitIfWeb(5)
+        width: 94,
+        height: 54,
+        marginTop: 5
     }
 
 })
 
-const webStyles: any = {
-    ...nativeStyles,
-    container: {
-        ...nativeStyles.container,
-        boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-    }
-}
 
