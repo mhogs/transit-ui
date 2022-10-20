@@ -5,20 +5,23 @@ import { usePlatform } from '../../hooks';
 import { User } from './types';
 import { case_icon, clock_icon, delete_icon, edit_icon, rating_icon } from '../../assets';
 import Vehicule from './Vehicule';
+import { css } from './css';
+import { defaultFlex } from '../../themes/styles';
 
 type UserCardProps = {
     data: User;
     onDelete: (Userid: string) => void,
-    onEdit: (Userid: string) => void
+    onEdit: (Userid: string) => void,
+
 }
+
+const PLATFORM = usePlatform()
 
 const UserCard = (props: UserCardProps) => {
     const { data, onDelete, onEdit } = props
-    const platform = usePlatform()
 
-    if (platform === "native")
+    if (PLATFORM === "native")
         return (
-
             <View style={nativeStyles.container}>
                 <>
                     <View style={nativeStyles.actionsContainer}>
@@ -36,16 +39,18 @@ const UserCard = (props: UserCardProps) => {
                         </Pressable>
                     </View>
                     <View>
-                        <View style={[nativeStyles.userImageContainer, { backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }]}>
+                        <View style={[nativeStyles.userImageContainer, { backgroundColor: data?.usertype === "driver" ? "0" : (data?.approved ? colors.bg_rimary : colors.disabled) }]}>
                             <View style={[nativeStyles.userImageWraper, { backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }]}>
                                 <View style={{ position: 'relative' }}>
                                     <Image
-                                        source={{ uri: "https://i.picsum.photos/id/1009/200/200.jpg" }}
+                                        source={{ uri: "https://picsum.photos/200" }}
                                         style={nativeStyles.userImage}
                                     />
-                                    <View style={nativeStyles.caseIconWraper}>
-                                        <Image source={case_icon} style={{ width: 10, height: 8 }} />
-                                    </View>
+                                    {data.usertype === "mvp_user" &&
+                                        <View style={nativeStyles.caseIconWraper}>
+                                            <Image source={case_icon} style={{ width: 10, height: 8 }} />
+                                        </View>
+                                    }
 
                                 </View>
                             </View>
@@ -66,19 +71,24 @@ const UserCard = (props: UserCardProps) => {
                             <Text style={nativeStyles.userNameText}>
                                 {data?.firstName ?? "First Name"} {data?.firstName ?? "Last Name"}
                             </Text>
-                            <View style={{ width: 10, height: 10, borderRadius: 10, backgroundColor: data.queue ? colors.success : colors.disabled, marginLeft: 5 }} />
+
+                            {data?.usertype === "driver" &&
+                                <View style={[nativeStyles.onlineStatus, { backgroundColor: data.queue ? colors.success : colors.disabled }]} />
+                            }
                         </View>
 
                         <Text style={[nativeStyles.userAccontStatusText, { color: data?.approved ? colors.black_text : colors.canceled }]}>
                             Account {data?.approved ? "Approved" : "Not Approved"}
                         </Text>
 
-                        <View style={nativeStyles.ratingWraper}>
-                            <Text style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
-                                3.9
-                            </Text>
-                            <Image source={rating_icon} style={{ width: 12, height: 12 }} />
-                        </View>
+                        {["driver", "mvp_user"].includes(data?.usertype) &&
+                            <View style={nativeStyles.ratingWraper}>
+                                <Text style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
+                                    3.9
+                                </Text>
+                                <Image source={rating_icon} style={{ width: 12, height: 12 }} />
+                            </View>
+                        }
 
                         <View style={nativeStyles.userDetailsContainer}>
                             <View style={nativeStyles.userInfo}>
@@ -122,7 +132,7 @@ const UserCard = (props: UserCardProps) => {
                                     </>
 
                                     :
-                                    <View style={[nativeStyles.footerButton, { backgroundColor: colors.disabled, paddingVertical: 6 }]}>
+                                    <View style={[nativeStyles.footerButton, { backgroundColor: colors.disabled, paddingTop: 6, paddingBottom: 6 }]}>
                                         <Text style={[nativeStyles.footerButtonText, { fontSize: 20 }]}>0 $</Text>
                                     </View>
 
@@ -134,31 +144,151 @@ const UserCard = (props: UserCardProps) => {
                     </View>
                 </>
                 {/** car Info */}
-                {data.authorized &&
+                {data?.usertype === "driver" &&
                     <Vehicule />
                 }
             </View>
         )
 
     return (
-        <div>
-            web component
+        <div style={webStyles.container} className="user_card">
+            <style>
+                {css}
+            </style>
+            <>
+                <div style={webStyles.actionsContainer}>
+                    <div style={webStyles.actionsButton} onClick={() => onEdit?.(data?.id)}>
+                        <img src={edit_icon as any} style={{ width: 7, height: 7 }} />
+                        <div style={{ ...webStyles.actionsButtonText, color: colors.success }}>
+                            Edit
+                        </div>
+                    </div>
+                    <div style={webStyles.actionsButton} onClick={() => onDelete?.(data?.id)}>
+                        <img src={delete_icon as any} style={{ width: 7, height: 7 }} />
+                        <span style={{ ...webStyles.actionsButtonText, color: colors.canceled }}>
+                            Delete
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div style={{ ...webStyles.userImageContainer, backgroundColor: data?.usertype === "driver" ? "0" : (data?.approved ? colors.bg_rimary : colors.disabled) }}>
+                        <div style={{ ...webStyles.userImageWraper, backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }}>
+                            <div style={{ position: 'relative' }}>
+                                <img
+                                    src={"https://picsum.photos/200"}
+                                    style={webStyles.userImage}
+                                />
+                                {data.usertype === "mvp_user" &&
+                                    <div style={webStyles.caseIconWraper}>
+                                        <img src={case_icon as any} style={{ width: 10, height: 8 }} />
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style={{ height: 36 }}>
+                    {data?.approved &&
+                        <div style={webStyles.TimerContainer}>
+                            <div style={webStyles.TimerWraper}>
+                                <img src={clock_icon as any} style={{ width: 20, height: 16 }} />
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div style={webStyles.userInfoContainer}>
+                    <div style={{ display: 'flex', flexDirection: "row", alignItems: "center" }}>
+                        <span style={webStyles.userNameText}>
+                            {data?.firstName ?? "First Name"} {data?.firstName ?? "Last Name"}
+                        </span>
+
+                        {data?.usertype === "driver" &&
+                            <div style={{ ...webStyles.onlineStatus, backgroundColor: data.queue ? colors.success : colors.disabled }} />
+                        }
+                    </div>
+
+                    <span style={{ ...webStyles.userAccontStatusText, color: data?.approved ? colors.black_text : colors.canceled }}>
+                        Account {data?.approved ? "Approved" : "Not Approved"}
+                    </span>
+
+                    {["driver", "mvp_user"].includes(data?.usertype) &&
+                        <div style={webStyles.ratingWraper}>
+                            <span style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
+                                3.9
+                            </span>
+                            <img src={rating_icon as any} style={{ width: 12, height: 12 }} />
+                        </div>
+                    }
+
+                    <div style={webStyles.userDetailsContainer}>
+                        <div style={webStyles.userInfo}>
+                            <span style={webStyles.userInfoKeyText}>
+                                phone number :
+                            </span>
+                            <span style={webStyles.userInfoValueText}>
+                                {data?.mobile ?? "-"}
+                            </span>
+                        </div>
+                        <div style={{ ...webStyles.userInfo, marginTop: 7 }}>
+                            <span style={webStyles.userInfoKeyText}>
+                                E-mail :
+                            </span>
+                            <span style={webStyles.userInfoValueText}>
+                                {data?.email ?? "-"}
+                            </span>
+                        </div>
+                        <div style={{ ...webStyles.userInfo, marginTop: 7 }}>
+                            <span style={webStyles.userInfoKeyText}>
+                                Bank Info :
+                            </span>
+                            <span style={webStyles.userInfoValueText}>
+                                ???
+                            </span>
+                        </div>
+
+                        <div style={webStyles.footerContainer}>
+                            {data?.approved ?
+                                <>
+                                    <div style={webStyles.footerButton}>
+                                        <span style={webStyles.footerButtonText}>{"???"}</span>
+                                        <span style={webStyles.footerButtonSubText}>Booking</span>
+                                    </div>
+                                    <div style={{ width: 10 }} />
+
+                                    <div style={webStyles.footerButton}>
+                                        <span style={webStyles.footerButtonText}>{data?.walletBalance}</span>
+                                        <span style={webStyles.footerButtonSubText}>wallet balance</span>
+                                    </div>
+                                </>
+
+                                :
+                                <div style={{ ...webStyles.footerButton, backgroundColor: colors.disabled, paddingTop: 6, paddingBottom: 6 }}>
+                                    <span style={{ ...webStyles.footerButtonText, fontSize: 20 }}>0 $</span>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </>
+            {/** car Info */}
+            {data?.usertype === "driver" &&
+                <Vehicule />
+            }
         </div>
     )
 }
 
 export default memo(UserCard)
 
-const webStyles = {
-    container: {
-        borderRadius: "5px",
-        boxShadow: '#0px 0px 10px #C9C8C8',
-    },
 
-}
+
 
 const nativeStyles = StyleSheet.create({
     container: {
+        ...defaultFlex,
         position: "relative",
         borderRadius: 5,
         shadowColor: '#C9C8C8',
@@ -169,147 +299,187 @@ const nativeStyles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#fff",
         height: "auto",
-        paddingVertical: 12,
+        paddingTop: 12,
+        paddingBottom: 12,
+        boxShadow: '#0px 0px 10px #C9C8C8',
     },
     actionsContainer: {
+        ...defaultFlex,
         position: "absolute",
-        top: 12,
+        top: includeUnitIfWeb(12),
         left: 0,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
-        paddingHorizontal: 6
-
+        paddingLeft: includeUnitIfWeb(6),
+        paddingRight: includeUnitIfWeb(6)
     },
     actionsButton: {
+        ...defaultFlex,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        elevation: 3,
+        elevation: includeUnitIfWeb(3),
         backgroundColor: "#fff",
-        width: 80,
-        paddingVertical: 4,
-        borderRadius: 5
+        width: includeUnitIfWeb(80),
+        paddingTop: includeUnitIfWeb(4),
+        paddingBottom: includeUnitIfWeb(4),
+        borderRadius: includeUnitIfWeb(5),
+
     },
     actionsButtonText: {
         textTransform: 'uppercase',
         fontWeight: "600",
-        fontSize: 10,
-        marginLeft: 3
+        fontSize: includeUnitIfWeb(10),
+        marginLeft: includeUnitIfWeb(3)
     },
 
     /** user image block */
     userImageContainer: {
-        height: 78,
+        ...defaultFlex,
+        height: includeUnitIfWeb(78),
         width: "100%",
-
-        marginTop: 30,
+        marginTop: includeUnitIfWeb(30),
         overflow: "visible",
         alignItems: "center",
         justifyContent: "center"
     },
     userImageWraper: {
-        width: 132,
-        height: 132,
-        borderRadius: 132,
+        ...defaultFlex,
+        width: includeUnitIfWeb(132),
+        height: includeUnitIfWeb(132),
+        borderRadius: includeUnitIfWeb(132),
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flexShrink: 0,
+    },
+    userImage: {
+        width: includeUnitIfWeb(112),
+        height: includeUnitIfWeb(112),
+        borderRadius: includeUnitIfWeb(112),
+        backgroundColor: "#fff"
     },
     caseIconWraper: {
+        ...defaultFlex,
         position: "absolute",
-        bottom: 10,
-        right: -3,
-        paddingVertical: 5,
-        paddingHorizontal: 4,
-        borderRadius: 16,
-        borderWidth: 3,
+        bottom: includeUnitIfWeb(15),
+        right: includeUnitIfWeb(1),
+        paddingTop: includeUnitIfWeb(5),
+        paddingBottom: includeUnitIfWeb(5),
+        paddingLeft: includeUnitIfWeb(4),
+        paddingRight: includeUnitIfWeb(4),
+        borderRadius: includeUnitIfWeb(16),
+        borderWidth: includeUnitIfWeb(3),
         borderColor: "#fff",
         backgroundColor: colors.waiting,
     },
 
-    userImage: {
-        width: 100,
-        height: 100,
-        borderRadius: 100,
-        backgroundColor: "#fff"
-    },
+
     ratingWraper: {
+        ...defaultFlex,
         flexDirection: "row",
         alignItems: "center"
     },
+    onlineStatus: {
+        ...defaultFlex,
+        width: includeUnitIfWeb(10),
+        height: includeUnitIfWeb(10),
+        borderRadius: includeUnitIfWeb(10),
+        marginLeft: includeUnitIfWeb(5)
+    },
     /** timer  */
     TimerContainer: {
+        ...defaultFlex,
         flexDirection: "row",
         justifyContent: "flex-end",
-        paddingHorizontal: 8,
-        paddingVertical: 5
+        paddingLeft: includeUnitIfWeb(8),
+        paddingRight: includeUnitIfWeb(8),
+        paddingTop: includeUnitIfWeb(5),
+        paddingBottom: includeUnitIfWeb(5)
     },
     TimerWraper: {
-        padding: 5,
-        borderRadius: 3,
+        ...defaultFlex,
+        padding: includeUnitIfWeb(5),
+        borderRadius: includeUnitIfWeb(3),
         backgroundColor: "#fff",
         shadowColor: '#000',
         elevation: 2,
         shadowOffset: { width: 2, height: 4 },
         shadowOpacity: 0.25,
-        shadowRadius: 5,
+        shadowRadius: includeUnitIfWeb(5),
     },
     /** user info */
     userInfoContainer: {
-
+        ...defaultFlex,
         width: "100%",
         alignItems: "center"
     },
     userNameText: {
-        fontSize: 14,
+        fontSize: includeUnitIfWeb(14),
         fontWeight: "600"
     },
     userAccontStatusText: {
-        fontSize: 8,
-        marginTop: 4
+        fontSize: includeUnitIfWeb(8),
+        marginTop: includeUnitIfWeb(4)
     },
     userDetailsContainer: {
+        ...defaultFlex,
         width: "100%",
-        paddingHorizontal: 24,
-        marginTop: 15,
-        gap: 7
+        paddingLeft: includeUnitIfWeb(24),
+        paddingRight: includeUnitIfWeb(24),
+        marginTop: includeUnitIfWeb(15),
     },
     userInfo: {
+        ...defaultFlex,
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-between"
     },
     userInfoKeyText: {
-        fontSize: 10,
+        fontSize: includeUnitIfWeb(10),
         fontWeight: "600"
     },
     userInfoValueText: {
-        fontSize: 10,
+        fontSize: includeUnitIfWeb(10),
         fontWeight: "400"
     },
     footerContainer: {
-        marginTop: 10,
+        ...defaultFlex,
+        marginTop: includeUnitIfWeb(10),
         flexDirection: "row",
         width: "100%",
     },
     footerButton: {
+        ...defaultFlex,
         backgroundColor: colors.bg_rimary,
         flexGrow: 1,
         alignItems: "center",
-        borderRadius: 5,
-        paddingTop: 6,
-        paddingBottom: 3
+        borderRadius: includeUnitIfWeb(5),
+        paddingTop: includeUnitIfWeb(6),
+        paddingBottom: includeUnitIfWeb(3),
+        shadowColor: colors.gray,
+        elevation: includeUnitIfWeb(3)
     },
     footerButtonText: {
         color: "#fff",
-        fontSize: 14,
+        fontSize: includeUnitIfWeb(14),
         fontWeight: "700",
     },
     footerButtonSubText: {
         color: "#fff",
-        fontSize: 8,
-        lineHeight: 9.68
-    }
+        fontSize: includeUnitIfWeb(8),
+        lineHeight: includeUnitIfWeb(9.68),
 
+    }
 })
+
+
+const webStyles: any = {
+    ...nativeStyles
+}
+
+function includeUnitIfWeb(value: number): any {
+    if (PLATFORM === "native") return value
+    return `${value}px`
+}

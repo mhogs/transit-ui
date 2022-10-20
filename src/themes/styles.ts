@@ -1,5 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 
+export const defaultFlex: ViewStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+}
 export const common_styles = StyleSheet.create({
   shadow: {
     shadowColor: '#000',

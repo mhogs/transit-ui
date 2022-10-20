@@ -11,7 +11,9 @@ storiesOf('UserCard', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add('user', () => <UserCard data={default_user} {...actions} />)
   .add('disabled user', () => <UserCard data={disabled_user} {...actions} />)
-  .add('driver', () => <UserCard data={driver} {...actions} />)
+  .add('Mvp user', () => <UserCard data={mvp_user} {...actions} />)
+  .add('online_driver', () => <UserCard data={online_driver} {...actions} />)
+  .add('offline_driver', () => <UserCard data={offline_driver} {...actions} />)
 
 const default_user = {
   id: 'fhgjjdjodoj1452d',
@@ -20,7 +22,7 @@ const default_user = {
   lastName: 'Talha',
   mobile: '+213799085706',
   email: 'hemzatalha@gmail.com',
-  usertype: 'driver',
+  usertype: 'user',
   referralId: '1452fgg455g12g',
   approved: true,
   walletBalance: 15200,
@@ -45,7 +47,17 @@ const disabled_user = {
   ...default_user,
   approved: false,
 }
-const driver = {
+const mvp_user = {
   ...default_user,
-  authorized: true,
+  usertype: 'mvp_user',
+}
+const online_driver = {
+  ...default_user,
+  queue: true,
+  usertype: 'driver',
+}
+const offline_driver = {
+  ...default_user,
+  queue: false,
+  usertype: 'driver',
 }

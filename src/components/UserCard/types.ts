@@ -5,7 +5,7 @@ export type User = {
   lastName: string
   mobile: string
   email: string
-  usertype: string
+  usertype: 'user' | 'driver' | 'mvp_user'
   referralId: string
   approved: boolean
   walletBalance: number
