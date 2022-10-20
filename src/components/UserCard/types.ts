@@ -25,3 +25,21 @@ export type User = {
     dateLocale: string
   }
 }
+
+export type VehicleType = {
+  id: string
+  name: string
+  name_ar: string
+  name_he: string
+  image: string
+  base_fare: number
+  rate_per_unit_distance: number
+  rate_per_hour: number
+  convenience_fees: number
+  min_fare: number
+  convenience_fee_type: 'flat' | 'percentage'
+  extra_info?: string
+  limitations?: VehicleTypeLimitation[]
+}
+
+export type VehicleTypeLimitation = any

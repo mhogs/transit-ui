@@ -3,26 +3,19 @@ export type Driver = {
     createdAt: number
     firstName: string
     lastName: string
+    rating: number
     mobile: string
     email: string
-    usertype: string
-    referralId: string
+    bankInfo: string
+    isOnline: boolean
     approved: boolean
     walletBalance: number
-    loginType: string
-    licenseImage?: string
     profile_image?: string
-    pushToken?: string
-    userPlatform?: string
-    queue: boolean
-    fleetadmin?: string
-    createdByAdmin?: boolean
-    driverUpdateRequest?: any //todo
-    requestToBeDriver?: boolean
-    authorized: boolean
-    lang: {
-      langLocale: string
-      dateLocale: string
-    }
+    booking: number
+    paymentStatus: "done" | "waiting" | "not paid"
+    paymentStatusText: string
+    onPressTruck: ()=>void
+    onPressBooking: ()=>void
+    onPressPayment: ()=>void
   }
   
