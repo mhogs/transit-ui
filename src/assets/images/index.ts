@@ -7,6 +7,7 @@ import delete_icon from './delete_icon.png'
 import clock_icon from './watch_icon.png'
 import rating_icon from './rating_icon.png'
 import case_icon from './case_icon.png'
+import truck_icon from './truck_icon.png'
 export {
   checked_icon,
   plus_icon,
@@ -17,4 +18,5 @@ export {
   clock_icon,
   rating_icon,
   case_icon,
+  truck_icon,
 }

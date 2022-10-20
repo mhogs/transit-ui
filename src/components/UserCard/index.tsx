@@ -6,10 +6,14 @@ import { User } from './types';
 import { case_icon, clock_icon, delete_icon, edit_icon, rating_icon } from '../../assets';
 import Vehicule from './Vehicule';
 
+type UserCardProps = {
+    data: User;
+    onDelete: (Userid: string) => void,
+    onEdit: (Userid: string) => void
+}
 
-
-const UserCard = (props: User) => {
-    const { } = props
+const UserCard = (props: UserCardProps) => {
+    const { data, onDelete, onEdit } = props
     const platform = usePlatform()
 
     if (platform === "native")
@@ -18,13 +22,13 @@ const UserCard = (props: User) => {
             <View style={nativeStyles.container}>
                 <>
                     <View style={nativeStyles.actionsContainer}>
-                        <Pressable style={nativeStyles.actionsButton}>
+                        <Pressable style={nativeStyles.actionsButton} onPress={() => onEdit?.(data?.id)}>
                             <Image source={edit_icon} style={{ width: 7, height: 7 }} />
                             <Text style={[nativeStyles.actionsButtonText, { color: colors.success }]}>
                                 Edit
                             </Text>
                         </Pressable>
-                        <Pressable style={nativeStyles.actionsButton}>
+                        <Pressable style={nativeStyles.actionsButton} onPress={() => onDelete?.(data?.id)}>
                             <Image source={delete_icon} style={{ width: 7, height: 7 }} />
                             <Text style={[nativeStyles.actionsButtonText, { color: colors.canceled }]}>
                                 Delete
@@ -32,47 +36,57 @@ const UserCard = (props: User) => {
                         </Pressable>
                     </View>
                     <View>
-                        <View style={[nativeStyles.userImageContainer, { backgroundColor: props.approved ? colors.bg_rimary : colors.disabled }]}>
-                            <View style={[nativeStyles.userImageWraper, { backgroundColor: props.approved ? colors.bg_rimary : colors.disabled }]}>
+                        <View style={[nativeStyles.userImageContainer, { backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }]}>
+                            <View style={[nativeStyles.userImageWraper, { backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }]}>
                                 <View style={{ position: 'relative' }}>
                                     <Image
                                         source={{ uri: "https://i.picsum.photos/id/1009/200/200.jpg" }}
                                         style={nativeStyles.userImage}
                                     />
-                                    {props.authorized &&
-                                        <View style={nativeStyles.caseIconWraper}>
-                                            <Image source={case_icon} style={{ width: 10, height: 8 }} />
-                                        </View>
-                                    }
+                                    <View style={nativeStyles.caseIconWraper}>
+                                        <Image source={case_icon} style={{ width: 10, height: 8 }} />
+                                    </View>
+
                                 </View>
                             </View>
                         </View>
                     </View>
-                    <View style={nativeStyles.TimerContainer}>
-                        <Pressable style={nativeStyles.TimerWraper}>
-                            <Image source={clock_icon} style={{ width: 20, height: 16 }} />
-                        </Pressable>
+                    <View style={{ height: 36 }}>
+                        {data?.approved &&
+                            <View style={nativeStyles.TimerContainer}>
+                                <Pressable style={nativeStyles.TimerWraper}>
+                                    <Image source={clock_icon} style={{ width: 20, height: 16 }} />
+                                </Pressable>
+                            </View>
+                        }
                     </View>
+
                     <View style={nativeStyles.userInfoContainer}>
-                        <Text style={nativeStyles.userNameText}>
-                            {props.firstName ?? "First Name"} {props.firstName ?? "Last Name"}
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            <Text style={nativeStyles.userNameText}>
+                                {data?.firstName ?? "First Name"} {data?.firstName ?? "Last Name"}
+                            </Text>
+                            <View style={{ width: 10, height: 10, borderRadius: 10, backgroundColor: data.queue ? colors.success : colors.disabled, marginLeft: 5 }} />
+                        </View>
+
+                        <Text style={[nativeStyles.userAccontStatusText, { color: data?.approved ? colors.black_text : colors.canceled }]}>
+                            Account {data?.approved ? "Approved" : "Not Approved"}
                         </Text>
-                        <Text style={[nativeStyles.userAccontStatusText, { color: props.approved ? colors.black_text : colors.canceled }]}>
-                            Account {props.approved ? "Approved" : "Not Approved"}
-                        </Text>
+
                         <View style={nativeStyles.ratingWraper}>
                             <Text style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
                                 3.9
                             </Text>
                             <Image source={rating_icon} style={{ width: 12, height: 12 }} />
                         </View>
+
                         <View style={nativeStyles.userDetailsContainer}>
                             <View style={nativeStyles.userInfo}>
                                 <Text style={nativeStyles.userInfoKeyText}>
                                     phone number :
                                 </Text>
                                 <Text style={nativeStyles.userInfoValueText}>
-                                    {props.mobile ?? "-"}
+                                    {data?.mobile ?? "-"}
                                 </Text>
                             </View>
                             <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
@@ -80,7 +94,7 @@ const UserCard = (props: User) => {
                                     E-mail :
                                 </Text>
                                 <Text style={nativeStyles.userInfoValueText}>
-                                    {props.email ?? "-"}
+                                    {data?.email ?? "-"}
                                 </Text>
                             </View>
                             <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
@@ -93,7 +107,7 @@ const UserCard = (props: User) => {
                             </View>
 
                             <View style={nativeStyles.footerContainer}>
-                                {props.approved ?
+                                {data?.approved ?
                                     <>
                                         <View style={nativeStyles.footerButton}>
                                             <Text style={nativeStyles.footerButtonText}>{"???"}</Text>
@@ -102,7 +116,7 @@ const UserCard = (props: User) => {
                                         <View style={{ width: 10 }} />
 
                                         <View style={nativeStyles.footerButton}>
-                                            <Text style={nativeStyles.footerButtonText}>{props.walletBalance}</Text>
+                                            <Text style={nativeStyles.footerButtonText}>{data?.walletBalance}</Text>
                                             <Text style={nativeStyles.footerButtonSubText}>wallet balance</Text>
                                         </View>
                                     </>
@@ -120,7 +134,9 @@ const UserCard = (props: User) => {
                     </View>
                 </>
                 {/** car Info */}
-                <Vehicule />
+                {data.authorized &&
+                    <Vehicule />
+                }
             </View>
         )
 
