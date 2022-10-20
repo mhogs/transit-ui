@@ -9,11 +9,11 @@ export const actions = {
 }
 storiesOf('UserCard', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add('user', () => <UserCard data={default_user} {...actions} />)
-  .add('disabled user', () => <UserCard data={disabled_user} {...actions} />)
-  .add('Mvp user', () => <UserCard data={mvp_user} {...actions} />)
-  .add('online_driver', () => <UserCard data={online_driver} {...actions} />)
-  .add('offline_driver', () => <UserCard data={offline_driver} {...actions} />)
+  .add('user', () => <UserCard user={default_user} {...actions} />)
+  .add('disabled user', () => <UserCard user={disabled_user} {...actions} />)
+  .add('Mvp user', () => <UserCard user={mvp_user} {...actions} />)
+  .add('online_driver', () => <UserCard user={online_driver} {...actions} />)
+  .add('offline_driver', () => <UserCard user={offline_driver} {...actions} />)
 
 const default_user = {
   id: 'fhgjjdjodoj1452d',
@@ -27,8 +27,6 @@ const default_user = {
   approved: true,
   walletBalance: 15200,
   loginType: 'google',
-  licenseImage: 'https://picsum.photos/200',
-  profile_image: 'https://picsum.photos/200',
   pushToken: 'dsdlifhiz65464zefze654f6zef84z6ef6c1z6ef64f9z8ef46fz6fe4ze',
   userPlatform: 'mobile',
   queue: true,

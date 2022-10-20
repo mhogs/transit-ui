@@ -7,9 +7,10 @@ import { case_icon, clock_icon, delete_icon, edit_icon, rating_icon } from '../.
 import Vehicule from './Vehicule';
 import { css } from './css';
 import { defaultFlex } from '../../themes/styles';
+import { getDefaultAvatar } from '../../helpers';
 
 type UserCardProps = {
-    data: User;
+    user: User;
     onDelete: (Userid: string) => void,
     onEdit: (Userid: string) => void,
 
@@ -18,20 +19,20 @@ type UserCardProps = {
 const PLATFORM = usePlatform()
 
 const UserCard = (props: UserCardProps) => {
-    const { data, onDelete, onEdit } = props
+    const { user, onDelete, onEdit } = props
 
     if (PLATFORM === "native")
         return (
             <View style={nativeStyles.container}>
                 <>
                     <View style={nativeStyles.actionsContainer}>
-                        <Pressable style={nativeStyles.actionsButton} onPress={() => onEdit?.(data?.id)}>
+                        <Pressable style={nativeStyles.actionsButton} onPress={() => onEdit?.(user?.id)}>
                             <Image source={edit_icon} style={{ width: 7, height: 7 }} />
                             <Text style={[nativeStyles.actionsButtonText, { color: colors.success }]}>
                                 Edit
                             </Text>
                         </Pressable>
-                        <Pressable style={nativeStyles.actionsButton} onPress={() => onDelete?.(data?.id)}>
+                        <Pressable style={nativeStyles.actionsButton} onPress={() => onDelete?.(user?.id)}>
                             <Image source={delete_icon} style={{ width: 7, height: 7 }} />
                             <Text style={[nativeStyles.actionsButtonText, { color: colors.canceled }]}>
                                 Delete
@@ -39,14 +40,14 @@ const UserCard = (props: UserCardProps) => {
                         </Pressable>
                     </View>
                     <View>
-                        <View style={[nativeStyles.userImageContainer, { backgroundColor: data?.usertype === "driver" ? "0" : (data?.approved ? colors.bg_rimary : colors.disabled) }]}>
-                            <View style={[nativeStyles.userImageWraper, { backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }]}>
+                        <View style={[nativeStyles.userImageContainer, { backgroundColor: user?.usertype === "driver" ? "0" : (user?.approved ? colors.bg_rimary : colors.disabled) }]}>
+                            <View style={[nativeStyles.userImageWraper, { backgroundColor: user?.approved ? colors.bg_rimary : colors.disabled }]}>
                                 <View style={{ position: 'relative' }}>
                                     <Image
-                                        source={{ uri: "https://picsum.photos/200" }}
+                                        source={{ uri: user?.profile_image ?? getDefaultAvatar(user?.firstName, user?.lastName) }}
                                         style={nativeStyles.userImage}
                                     />
-                                    {data.usertype === "mvp_user" &&
+                                    {user?.usertype === "mvp_user" &&
                                         <View style={nativeStyles.caseIconWraper}>
                                             <Image source={case_icon} style={{ width: 10, height: 8 }} />
                                         </View>
@@ -57,7 +58,7 @@ const UserCard = (props: UserCardProps) => {
                         </View>
                     </View>
                     <View style={{ height: 36 }}>
-                        {data?.approved &&
+                        {user?.approved &&
                             <View style={nativeStyles.TimerContainer}>
                                 <Pressable style={nativeStyles.TimerWraper}>
                                     <Image source={clock_icon} style={{ width: 20, height: 16 }} />
@@ -69,22 +70,22 @@ const UserCard = (props: UserCardProps) => {
                     <View style={nativeStyles.userInfoContainer}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Text style={nativeStyles.userNameText}>
-                                {data?.firstName ?? "First Name"} {data?.firstName ?? "Last Name"}
+                                {user?.firstName ?? "First Name"} {user?.firstName ?? "Last Name"}
                             </Text>
 
-                            {data?.usertype === "driver" &&
-                                <View style={[nativeStyles.onlineStatus, { backgroundColor: data.queue ? colors.success : colors.disabled }]} />
+                            {user?.usertype === "driver" &&
+                                <View style={[nativeStyles.onlineStatus, { backgroundColor: user?.queue ? colors.success : colors.disabled }]} />
                             }
                         </View>
 
-                        <Text style={[nativeStyles.userAccontStatusText, { color: data?.approved ? colors.black_text : colors.canceled }]}>
-                            Account {data?.approved ? "Approved" : "Not Approved"}
+                        <Text style={[nativeStyles.userAccontStatusText, { color: user?.approved ? colors.black_text : colors.canceled }]}>
+                            Account {user?.approved ? "Approved" : "Not Approved"}
                         </Text>
 
-                        {["driver", "mvp_user"].includes(data?.usertype) &&
+                        {["driver", "mvp_user"].includes(user?.usertype) &&
                             <View style={nativeStyles.ratingWraper}>
                                 <Text style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
-                                    3.9
+                                    {"???"}
                                 </Text>
                                 <Image source={rating_icon} style={{ width: 12, height: 12 }} />
                             </View>
@@ -96,7 +97,7 @@ const UserCard = (props: UserCardProps) => {
                                     phone number :
                                 </Text>
                                 <Text style={nativeStyles.userInfoValueText}>
-                                    {data?.mobile ?? "-"}
+                                    {user?.mobile ?? "-"}
                                 </Text>
                             </View>
                             <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
@@ -104,7 +105,7 @@ const UserCard = (props: UserCardProps) => {
                                     E-mail :
                                 </Text>
                                 <Text style={nativeStyles.userInfoValueText}>
-                                    {data?.email ?? "-"}
+                                    {user?.email ?? "-"}
                                 </Text>
                             </View>
                             <View style={[nativeStyles.userInfo, { marginTop: 7 }]}>
@@ -117,7 +118,7 @@ const UserCard = (props: UserCardProps) => {
                             </View>
 
                             <View style={nativeStyles.footerContainer}>
-                                {data?.approved ?
+                                {user?.approved ?
                                     <>
                                         <View style={nativeStyles.footerButton}>
                                             <Text style={nativeStyles.footerButtonText}>{"???"}</Text>
@@ -126,7 +127,7 @@ const UserCard = (props: UserCardProps) => {
                                         <View style={{ width: 10 }} />
 
                                         <View style={nativeStyles.footerButton}>
-                                            <Text style={nativeStyles.footerButtonText}>{data?.walletBalance}</Text>
+                                            <Text style={nativeStyles.footerButtonText}>{user?.walletBalance}</Text>
                                             <Text style={nativeStyles.footerButtonSubText}>wallet balance</Text>
                                         </View>
                                     </>
@@ -135,7 +136,6 @@ const UserCard = (props: UserCardProps) => {
                                     <View style={[nativeStyles.footerButton, { backgroundColor: colors.disabled, paddingTop: 6, paddingBottom: 6 }]}>
                                         <Text style={[nativeStyles.footerButtonText, { fontSize: 20 }]}>0 $</Text>
                                     </View>
-
                                 }
                             </View>
 
@@ -144,7 +144,7 @@ const UserCard = (props: UserCardProps) => {
                     </View>
                 </>
                 {/** car Info */}
-                {data?.usertype === "driver" &&
+                {user?.usertype === "driver" &&
                     <Vehicule />
                 }
             </View>
@@ -157,13 +157,13 @@ const UserCard = (props: UserCardProps) => {
             </style>
             <>
                 <div style={webStyles.actionsContainer}>
-                    <div style={webStyles.actionsButton} onClick={() => onEdit?.(data?.id)}>
+                    <div style={webStyles.actionsButton} onClick={() => onEdit?.(user?.id)}>
                         <img src={edit_icon as any} style={{ width: 7, height: 7 }} />
                         <div style={{ ...webStyles.actionsButtonText, color: colors.success }}>
                             Edit
                         </div>
                     </div>
-                    <div style={webStyles.actionsButton} onClick={() => onDelete?.(data?.id)}>
+                    <div style={webStyles.actionsButton} onClick={() => onDelete?.(user?.id)}>
                         <img src={delete_icon as any} style={{ width: 7, height: 7 }} />
                         <span style={{ ...webStyles.actionsButtonText, color: colors.canceled }}>
                             Delete
@@ -171,14 +171,14 @@ const UserCard = (props: UserCardProps) => {
                     </div>
                 </div>
                 <div>
-                    <div style={{ ...webStyles.userImageContainer, backgroundColor: data?.usertype === "driver" ? "0" : (data?.approved ? colors.bg_rimary : colors.disabled) }}>
-                        <div style={{ ...webStyles.userImageWraper, backgroundColor: data?.approved ? colors.bg_rimary : colors.disabled }}>
+                    <div style={{ ...webStyles.userImageContainer, backgroundColor: user?.usertype === "driver" ? "0" : (user?.approved ? colors.bg_rimary : colors.disabled) }}>
+                        <div style={{ ...webStyles.userImageWraper, backgroundColor: user?.approved ? colors.bg_rimary : colors.disabled }}>
                             <div style={{ position: 'relative' }}>
                                 <img
-                                    src={"https://picsum.photos/200"}
+                                    src={user?.profile_image ?? getDefaultAvatar(user?.firstName, user?.lastName)}
                                     style={webStyles.userImage}
                                 />
-                                {data.usertype === "mvp_user" &&
+                                {user?.usertype === "mvp_user" &&
                                     <div style={webStyles.caseIconWraper}>
                                         <img src={case_icon as any} style={{ width: 10, height: 8 }} />
                                     </div>
@@ -189,7 +189,7 @@ const UserCard = (props: UserCardProps) => {
                     </div>
                 </div>
                 <div style={{ height: 36 }}>
-                    {data?.approved &&
+                    {user?.approved &&
                         <div style={webStyles.TimerContainer}>
                             <div style={webStyles.TimerWraper}>
                                 <img src={clock_icon as any} style={{ width: 20, height: 16 }} />
@@ -201,22 +201,22 @@ const UserCard = (props: UserCardProps) => {
                 <div style={webStyles.userInfoContainer}>
                     <div style={{ display: 'flex', flexDirection: "row", alignItems: "center" }}>
                         <span style={webStyles.userNameText}>
-                            {data?.firstName ?? "First Name"} {data?.firstName ?? "Last Name"}
+                            {user?.firstName ?? "First Name"} {user?.firstName ?? "Last Name"}
                         </span>
 
-                        {data?.usertype === "driver" &&
-                            <div style={{ ...webStyles.onlineStatus, backgroundColor: data.queue ? colors.success : colors.disabled }} />
+                        {user?.usertype === "driver" &&
+                            <div style={{ ...webStyles.onlineStatus, backgroundColor: user?.queue ? colors.success : colors.disabled }} />
                         }
                     </div>
 
-                    <span style={{ ...webStyles.userAccontStatusText, color: data?.approved ? colors.black_text : colors.canceled }}>
-                        Account {data?.approved ? "Approved" : "Not Approved"}
+                    <span style={{ ...webStyles.userAccontStatusText, color: user?.approved ? colors.black_text : colors.canceled }}>
+                        Account {user?.approved ? "Approved" : "Not Approved"}
                     </span>
 
-                    {["driver", "mvp_user"].includes(data?.usertype) &&
+                    {["driver", "mvp_user"].includes(user?.usertype) &&
                         <div style={webStyles.ratingWraper}>
                             <span style={{ fontSize: 10, marginRight: 3, marginTop: 2.5 }}>
-                                3.9
+                                {"???"}
                             </span>
                             <img src={rating_icon as any} style={{ width: 12, height: 12 }} />
                         </div>
@@ -228,7 +228,7 @@ const UserCard = (props: UserCardProps) => {
                                 phone number :
                             </span>
                             <span style={webStyles.userInfoValueText}>
-                                {data?.mobile ?? "-"}
+                                {user?.mobile ?? "-"}
                             </span>
                         </div>
                         <div style={{ ...webStyles.userInfo, marginTop: 7 }}>
@@ -236,7 +236,7 @@ const UserCard = (props: UserCardProps) => {
                                 E-mail :
                             </span>
                             <span style={webStyles.userInfoValueText}>
-                                {data?.email ?? "-"}
+                                {user?.email ?? "-"}
                             </span>
                         </div>
                         <div style={{ ...webStyles.userInfo, marginTop: 7 }}>
@@ -249,7 +249,7 @@ const UserCard = (props: UserCardProps) => {
                         </div>
 
                         <div style={webStyles.footerContainer}>
-                            {data?.approved ?
+                            {user?.approved ?
                                 <>
                                     <div style={webStyles.footerButton}>
                                         <span style={webStyles.footerButtonText}>{"???"}</span>
@@ -258,7 +258,7 @@ const UserCard = (props: UserCardProps) => {
                                     <div style={{ width: 10 }} />
 
                                     <div style={webStyles.footerButton}>
-                                        <span style={webStyles.footerButtonText}>{data?.walletBalance}</span>
+                                        <span style={webStyles.footerButtonText}>{user?.walletBalance}</span>
                                         <span style={webStyles.footerButtonSubText}>wallet balance</span>
                                     </div>
                                 </>
@@ -274,7 +274,7 @@ const UserCard = (props: UserCardProps) => {
                 </div>
             </>
             {/** car Info */}
-            {data?.usertype === "driver" &&
+            {user?.usertype === "driver" &&
                 <Vehicule />
             }
         </div>
@@ -299,9 +299,8 @@ const nativeStyles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#fff",
         height: "auto",
-        paddingTop: 12,
-        paddingBottom: 12,
-        boxShadow: '#0px 0px 10px #C9C8C8',
+        paddingTop: includeUnitIfWeb(12),
+        paddingBottom: includeUnitIfWeb(12),
     },
     actionsContainer: {
         ...defaultFlex,
@@ -459,7 +458,7 @@ const nativeStyles = StyleSheet.create({
         paddingTop: includeUnitIfWeb(6),
         paddingBottom: includeUnitIfWeb(3),
         shadowColor: colors.gray,
-        elevation: includeUnitIfWeb(3)
+        elevation: 3
     },
     footerButtonText: {
         color: "#fff",
@@ -476,7 +475,23 @@ const nativeStyles = StyleSheet.create({
 
 
 const webStyles: any = {
-    ...nativeStyles
+    ...nativeStyles,
+    container: {
+        ...nativeStyles.container,
+        boxShadow: "0px 0px 10px #C9C8C8",
+    },
+    actionsButton: {
+        ...nativeStyles.actionsButton,
+        boxShadow: "0px 1px 2px rgba(137, 134, 134, 0.25)",
+    },
+    TimerWraper: {
+        ...nativeStyles.TimerWraper,
+        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)"
+    },
+    footerButton: {
+        ...nativeStyles.footerButton,
+        boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+    }
 }
 
 function includeUnitIfWeb(value: number): any {

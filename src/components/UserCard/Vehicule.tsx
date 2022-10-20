@@ -26,7 +26,7 @@ const Vehicule = (props: VehiculeProps) => {
                         <Image source={truck_icon} style={nativeStyles.vehiculeIcon} />
                     </View>
                     <View style={nativeStyles.infoscontainer} >
-                        <View>
+                        <View style={nativeStyles.infoWraper}>
                             <Text style={nativeStyles.infoKeyText}>
                                 brand / mark
                             </Text>
@@ -34,7 +34,7 @@ const Vehicule = (props: VehiculeProps) => {
                                 Volvo
                             </Text>
                         </View>
-                        <View style={{ marginTop: 4 }}>
+                        <View style={nativeStyles.infoWraper}>
                             <Text style={nativeStyles.infoKeyText}>
                                 Model
                             </Text>
@@ -42,7 +42,7 @@ const Vehicule = (props: VehiculeProps) => {
                                 2000
                             </Text>
                         </View>
-                        <View style={{ marginTop: 4 }}>
+                        <View style={nativeStyles.infoWraper}>
                             <Text style={nativeStyles.infoKeyText}>
                                 Plate number
                             </Text>
@@ -72,7 +72,7 @@ const Vehicule = (props: VehiculeProps) => {
                     <img src={truck_icon as any} style={webStyles.vehiculeIcon} />
                 </div>
                 <div style={webStyles.infoscontainer} >
-                    <div>
+                    <div style={webStyles.infoWraper}>
                         <span style={webStyles.infoKeyText}>
                             brand / mark
                         </span>
@@ -80,7 +80,7 @@ const Vehicule = (props: VehiculeProps) => {
                             Volvo
                         </span>
                     </div>
-                    <div style={{ marginTop: 4 }}>
+                    <div style={webStyles.infoWraper}>
                         <span style={webStyles.infoKeyText}>
                             Model
                         </span>
@@ -88,7 +88,7 @@ const Vehicule = (props: VehiculeProps) => {
                             2000
                         </span>
                     </div>
-                    <div style={{ marginTop: 4 }}>
+                    <div style={webStyles.infoWraper}>
                         <span style={webStyles.infoKeyText}>
                             Plate number
                         </span>
@@ -131,7 +131,9 @@ const nativeStyles = StyleSheet.create({
         width: "100%",
         alignItems: "center",
         backgroundColor: colors.bg_rimary,
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        shadowColor: colors.gray,
+        elevation: 3
     },
     vehiculeIcon: {
         width: includeUnitIfWeb(34),
@@ -150,6 +152,11 @@ const nativeStyles = StyleSheet.create({
     infoscontainer: {
         ...defaultFlex,
     },
+    infoWraper: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: includeUnitIfWeb(4),
+    },
     infoKeyText: {
         fontSize: includeUnitIfWeb(12),
         fontWeight: "500",
@@ -157,6 +164,7 @@ const nativeStyles = StyleSheet.create({
     },
     infoValueText: {
         fontSize: includeUnitIfWeb(10),
+        marginLeft: includeUnitIfWeb(6),
         fontWeight: "300",
         color: "#fff"
     },
@@ -173,6 +181,11 @@ const nativeStyles = StyleSheet.create({
 
 const webStyles: any = {
     ...nativeStyles,
+    container: {
+        ...nativeStyles.container,
+        boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+    }
+
 }
 
 function includeUnitIfWeb(value: number): any {
